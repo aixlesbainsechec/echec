@@ -1,0 +1,612 @@
+/* ========================================
+   CSS École d'échecs - Académie d'Échecs
+   ======================================== */
+
+/* Hero animé */
+.school-hero {
+    position: relative;
+    min-height: 500px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.animated-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.1;
+}
+
+.chess-piece {
+    position: absolute;
+    font-size: 4rem;
+    color: var(--white);
+    animation: float-diagonal 20s infinite linear;
+}
+
+.piece-1 { top: 10%; left: -100px; animation-delay: 0s; }
+.piece-2 { top: 30%; left: -100px; animation-delay: 3s; }
+.piece-3 { top: 50%; left: -100px; animation-delay: 6s; }
+.piece-4 { top: 70%; left: -100px; animation-delay: 9s; }
+.piece-5 { top: 20%; left: -100px; animation-delay: 12s; }
+.piece-6 { top: 80%; left: -100px; animation-delay: 15s; }
+
+@keyframes float-diagonal {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        transform: translate(calc(100vw + 200px), -100px) rotate(360deg);
+    }
+}
+
+.hero-badges {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+}
+
+/* Introduction école */
+.school-intro {
+    background: var(--white);
+}
+
+.intro-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.intro-text h2 {
+    text-align: left;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.intro-features {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    transition: all var(--transition-base);
+}
+
+.feature:hover {
+    transform: translateX(10px);
+    color: var(--accent);
+}
+
+.feature i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    width: 30px;
+}
+
+/* Visual cards grid */
+.intro-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.visual-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.visual-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-1 { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+.card-2 { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+.card-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); color: white; }
+.card-4 { background: linear-gradient(135deg, #fa709a, #fee140); color: white; }
+
+.visual-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.visual-card h4 {
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+/* Niveaux de formation */
+.levels-section {
+    background: var(--light);
+}
+
+.levels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.level-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.level-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.level-header {
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.beginner .level-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+.intermediate .level-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.advanced .level-header { background: linear-gradient(135deg, #fa709a, #fee140); }
+
+.level-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.level-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+}
+
+.level-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.level-content {
+    padding: 2rem;
+}
+
+.level-content h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.level-content ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.level-content li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.level-content li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.level-info {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.level-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.level-description {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Méthode pédagogique */
+.method-section {
+    background: var(--white);
+    position: relative;
+}
+
+.method-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+.method-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--primary));
+    transform: translateX(-50%);
+}
+
+.method-step {
+    position: relative;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.method-step:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    background: var(--accent);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px var(--white), 0 0 0 5px var(--accent);
+}
+
+.step-content {
+    flex: 1;
+    background: var(--light);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.step-content:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.step-content h3 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+/* Témoignages */
+.testimonials-section {
+    background: var(--light);
+}
+
+.testimonials-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.2;
+    font-family: Georgia, serif;
+}
+
+.testimonial-content {
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--gray-dark);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    background: var(--light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.author-info h4 {
+    margin-bottom: 0.25rem;
+    color: var(--primary);
+}
+
+.author-info span {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+/* Interventions scolaires */
+.school-interventions {
+    background: var(--white);
+}
+
+.interventions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.schools-list {
+    margin-top: 2rem;
+    background: var(--light);
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.schools-list h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.schools-list ul {
+    list-style: none;
+}
+
+.schools-list li {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.schools-list i {
+    color: var(--accent);
+}
+
+.benefits {
+    margin-top: 2rem;
+}
+
+.benefits h4 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: var(--light);
+    border-radius: 8px;
+    transition: all var(--transition-base);
+}
+
+.benefit-item:hover {
+    transform: translateX(10px);
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.benefit-item i {
+    font-size: 1.5rem;
+    color: var(--accent);
+    width: 30px;
+}
+
+.benefit-item:hover i {
+    color: var(--primary);
+}
+
+/* Stats showcase */
+.stats-showcase {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-circle {
+    background: var(--white);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: all var(--transition-base);
+}
+
+.stat-circle:hover {
+    background: var(--accent);
+    transform: scale(1.1);
+}
+
+.stat-circle:hover .stat-number,
+.stat-circle:hover .stat-label {
+    color: var(--primary);
+}
+
+.stat-circle .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.stat-circle .stat-label {
+    font-size: 0.75rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+.school-quote {
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+    font-style: italic;
+}
+
+.school-quote cite {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+    font-style: normal;
+}
+
+/* CTA features */
+.cta-features {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.cta-feature {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .intro-wrapper,
+    .interventions-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .intro-visual {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .method-timeline::before {
+        left: 30px;
+    }
+    
+    .method-step {
+        flex-direction: column !important;
+        align-items: flex-start;
+        padding-left: 60px;
+    }
+    
+    .step-number {
+        position: absolute;
+        left: 0;
+    }
+    
+    .levels-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-showcase {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .hero-badges {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .intro-visual {
+        grid-template-columns: 1fr;
+    }
+    
+    .testimonials-carousel {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-features {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

@@ -1,0 +1,20 @@
+.blog-layout > main{
+  min-width:0;          /* ← autorise la colonne “1fr” à rétrécir */
+}
+
+.blog-layout{display:grid;grid-template-columns:220px 1fr;gap:2rem;}
+.blog-filters ul{list-style:none;padding:0;}
+.blog-filters li{cursor:pointer;margin:.25rem 0;}
+.blog-filters li.active{font-weight:700;color:var(--accent);}
+
+#postGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); /* 280px → 240px */
+  gap:var(--spacing-xl);
+}
+
+/* ② Quand on n’a plus assez de place pour l’aside, on empile */
+@media (max-width: 1024px){
+  .blog-layout{grid-template-columns:1fr;} /* aside au-dessus, plus de débordement */
+  .blog-filters{margin-bottom:2rem;}       /* petit espace sous les filtres */
+}

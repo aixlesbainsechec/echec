@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Événements et tournois - Académie d'Échecs d'Aix-les-Bains">
+    <title>Événements - Académie d'Échecs d'Aix-les-Bains</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/evenements.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="chess-loader">
+            <span class="piece">♔</span>
+            <span class="piece">♕</span>
+            <span class="piece">♖</span>
+            <span class="piece">♗</span>
+            <span class="piece">♘</span>
+            <span class="piece">♙</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <!-- Header (même structure) -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">♔</span>
+                <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="club.html">Présentation</a></li>
+                            <li><a href="ecole.html">École d'échecs</a></li>
+                            <li><a href="club.html#equipe">Notre équipe</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horaires.html" class="nav-link">
+                            <i class="fas fa-clock"></i> Horaires
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="evenements.html" class="nav-link active">
+                            <i class="fas fa-calendar"></i> Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">
+                            <i class="fas fa-archive"></i> Archives
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      ajax/libs/gsap/3.13.0/gsap.min.js
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero dynamique -->
+    <section class="events-hero">
+        <div class="hero-calendar">
+            <div class="calendar-animation">
+                <div class="calendar-page" data-month="JUIL"></div>
+                <div class="calendar-page" data-month="AOÛT"></div>
+                <div class="calendar-page" data-month="SEPT"></div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="page-title" data-aos="fade-down">Événements</h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Tournois, stages et compétitions tout au long de l'année
+            </p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <span>Événements</span>
+    </div>
+
+    <!-- Événements à venir -->
+    <section class="section upcoming-events">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Prochains événements</h2>
+            
+            <!-- Filtres par type -->
+            <div class="event-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-calendar-alt"></i> Tous
+                </button>
+                <button class="filter-btn" data-filter="tournoi">
+                    <i class="fas fa-trophy"></i> Tournois
+                </button>
+                <button class="filter-btn" data-filter="stage">
+                    <i class="fas fa-graduation-cap"></i> Stages
+                </button>
+                <button class="filter-btn" data-filter="competition">
+                    <i class="fas fa-medal"></i> Compétitions
+                </button>
+                <button class="filter-btn" data-filter="special">
+                    <i class="fas fa-star"></i> Spéciaux
+                </button>
+            </div>
+
+            <!-- Loader pendant chargement -->
+            <div class="events-loader" id="eventsLoader">
+                <div class="loader-chess">
+                    <span>♔</span>
+                    <span>♕</span>
+                    <span>♖</span>
+                </div>
+                <p>Chargement des événements...</p>
+            </div>
+
+            <!-- Grille d'événements -->
+            <div class="events-grid" id="eventsGrid" style="display: none;">
+                <!-- Les événements seront chargés dynamiquement ici -->
+            </div>
+
+            <!-- Message si pas d'événements -->
+            <div class="no-events" id="noEvents" style="display: none;">
+                <i class="fas fa-calendar-times"></i>
+                <p>Aucun événement prévu pour le moment</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendrier mensuel -->
+    <section class="section calendar-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Calendrier</h2>
+            
+            <div class="calendar-navigation" data-aos="fade-up" data-aos-delay="100">
+                <button class="calendar-nav prev" id="prevMonth">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h3 class="calendar-month" id="currentMonth">Juillet 2025</h3>
+                <button class="calendar-nav next" id="nextMonth">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid">
+                <div class="calendar-header">Lun</div>
+                <div class="calendar-header">Mar</div>
+                <div class="calendar-header">Mer</div>
+                <div class="calendar-header">Jeu</div>
+                <div class="calendar-header">Ven</div>
+                <div class="calendar-header">Sam</div>
+                <div class="calendar-header">Dim</div>
+                <!-- Les jours seront générés dynamiquement -->
+            </div>
+
+            <div class="calendar-legend">
+                <div class="legend-item">
+                    <span class="legend-dot tournoi"></span>
+                    <span>Tournoi</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot stage"></span>
+                    <span>Stage</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot competition"></span>
+                    <span>Compétition</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot special"></span>
+                    <span>Événement spécial</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Événements récurrents -->
+    <section class="section recurring-events">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Événements récurrents</h2>
+            
+            <div class="recurring-grid">
+                <div class="recurring-card" data-aos="flip-left">
+                    <div class="recurring-icon">
+                        <i class="fas fa-chess-clock"></i>
+                    </div>
+                    <h3>Tournoi Rapide Mensuel</h3>
+                    <p class="recurring-date">1er samedi du mois</p>
+                    <p>Tournoi en 7 rondes, cadence 15min+5s. Ouvert à tous les licenciés.</p>
+                    <div class="recurring-info">
+                        <span><i class="fas fa-clock"></i> 14h - 18h</span>
+                        <span><i class="fas fa-euro-sign"></i> 5€</span>
+                    </div>
+                </div>
+
+                <div class="recurring-card" data-aos="flip-left" data-aos-delay="100">
+                    <div class="recurring-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Blitz du Vendredi</h3>
+                    <p class="recurring-date">Tous les vendredis</p>
+                    <p>Tournoi blitz convivial 3min+2s. Ambiance décontractée garantie !</p>
+                    <div class="recurring-info">
+                        <span><i class="fas fa-clock"></i> 20h - 22h</span>
+                        <span><i class="fas fa-euro-sign"></i> Gratuit</span>
+                    </div>
+                </div>
+
+                <div class="recurring-card" data-aos="flip-left" data-aos-delay="200">
+                    <div class="recurring-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3>Tournoi Jeunes</h3>
+                    <p class="recurring-date">3e dimanche du mois</p>
+                    <p>Réservé aux moins de 16 ans. Catégories par âge, lots pour tous.</p>
+                    <div class="recurring-info">
+                        <span><i class="fas fa-clock"></i> 14h - 17h</span>
+                        <span><i class="fas fa-euro-sign"></i> 3€</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stages vacances -->
+    <section class="section holiday-camps">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Stages vacances</h2>
+            
+            <div class="camps-timeline">
+                <div class="camp-item" data-aos="fade-right">
+                    <div class="camp-date">
+                        <span class="camp-month">JUIL</span>
+                        <span class="camp-days">15-19</span>
+                    </div>
+                    <div class="camp-content">
+                        <h3>Stage d'été - Semaine 1</h3>
+                        <p>Stage intensif tous niveaux. Cours le matin, tournois l'après-midi.</p>
+                        <div class="camp-details">
+                            <span><i class="fas fa-users"></i> 6-16 ans</span>
+                            <span><i class="fas fa-clock"></i> 9h-17h</span>
+                            <span><i class="fas fa-euro-sign"></i> 150€/semaine</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                    </div>
+                </div>
+
+                <div class="camp-item" data-aos="fade-left" data-aos-delay="100">
+                    <div class="camp-date">
+                        <span class="camp-month">AOÛT</span>
+                        <span class="camp-days">19-23</span>
+                    </div>
+                    <div class="camp-content">
+                        <h3>Stage d'été - Semaine 2</h3>
+                        <p>Perfectionnement tactique et préparation rentrée. Places limitées.</p>
+                        <div class="camp-details">
+                            <span><i class="fas fa-users"></i> 8-18 ans</span>
+                            <span><i class="fas fa-clock"></i> 9h-17h</span>
+                            <span><i class="fas fa-euro-sign"></i> 150€/semaine</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                    </div>
+                </div>
+
+                <div class="camp-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="camp-date">
+                        <span class="camp-month">OCT</span>
+                        <span class="camp-days">21-25</span>
+                    </div>
+                    <div class="camp-content">
+                        <h3>Stage Toussaint</h3>
+                        <p>Stage découverte et perfectionnement. Initiation aux ouvertures.</p>
+                        <div class="camp-details">
+                            <span><i class="fas fa-users"></i> 6-14 ans</span>
+                            <span><i class="fas fa-clock"></i> 14h-17h</span>
+                            <span><i class="fas fa-euro-sign"></i> 80€/semaine</span>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétitions officielles -->
+    <section class="section official-competitions">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Compétitions officielles</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Représentez le club dans les championnats départementaux et régionaux
+            </p>
+
+            <div class="competitions-cards">
+                <div class="competition-card" data-aos="zoom-in">
+                    <div class="competition-header">
+                        <i class="fas fa-flag-checkered"></i>
+                        <h3>Championnat de Savoie</h3>
+                    </div>
+                    <p>Qualificatif pour le championnat régional. Toutes catégories d'âge.</p>
+                    <div class="competition-date">
+                        <i class="fas fa-calendar"></i> Novembre - Décembre
+                    </div>
+                </div>
+
+                <div class="competition-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="competition-header">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Interclubs N4</h3>
+                    </div>
+                    <p>Championnat par équipes. Rencontres à domicile et à l'extérieur.</p>
+                    <div class="competition-date">
+                        <i class="fas fa-calendar"></i> Octobre - Mars
+                    </div>
+                </div>
+
+                <div class="competition-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="competition-header">
+                        <i class="fas fa-crown"></i>
+                        <h3>Championnat Régional</h3>
+                    </div>
+                    <p>Pour les qualifiés du championnat départemental. Ligue ARA.</p>
+                    <div class="competition-date">
+                        <i class="fas fa-calendar"></i> Février - Mars
+                    </div>
+                </div>
+            </div>
+
+            <div class="competition-cta" data-aos="fade-up">
+                <p>Pour participer aux compétitions officielles, la licence FFE est obligatoire</p>
+                <a href="contact.html" class="btn btn-primary">
+                    <i class="fas fa-id-card"></i> Obtenir sa licence
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Newsletter -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content" data-aos="zoom-in">
+                <h2>Ne manquez aucun événement !</h2>
+                <p>Inscrivez-vous à notre newsletter pour recevoir le programme mensuel</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    <div class="form-group">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> S'inscrire
+                        </button>
+                    </div>
+                </form>
+                <p class="newsletter-note">
+                    <i class="fas fa-lock"></i> Vos données restent confidentielles
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Académie d'Échecs</h4>
+                    <p>Club FFE n°2624<br>
+                    15 avenue d'Annecy<br>
+                    73100 Aix-les-Bains</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="club.html">Le Club</a></li>
+                        <li><a href="horaires.html">Horaires</a></li>
+                        <li><a href="evenements.html">Événements</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens externes</h4>
+                    <ul>
+                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
+                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
+                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/events.js"></script>
+</body>
+</html>

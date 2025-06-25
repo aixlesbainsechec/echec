@@ -1,0 +1,657 @@
+/* ========================================
+   CSS Événements - Académie d'Échecs
+   ======================================== */
+
+/* Hero avec calendrier animé */
+.events-hero {
+    position: relative;
+    min-height: 450px;
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+.hero-calendar {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.1;
+}
+
+.calendar-animation {
+    position: relative;
+    width: 300px;
+    height: 350px;
+    transform-style: preserve-3d;
+    animation: flip-calendar 10s infinite;
+}
+
+.calendar-page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    font-weight: bold;
+    backface-visibility: hidden;
+}
+
+.calendar-page::before {
+    content: attr(data-month);
+}
+
+.calendar-page:nth-child(1) {
+    transform: rotateY(0deg) translateZ(50px);
+}
+
+.calendar-page:nth-child(2) {
+    transform: rotateY(120deg) translateZ(50px);
+}
+
+.calendar-page:nth-child(3) {
+    transform: rotateY(240deg) translateZ(50px);
+}
+
+@keyframes flip-calendar {
+    0%, 100% { transform: rotateY(0deg); }
+    33% { transform: rotateY(-120deg); }
+    66% { transform: rotateY(-240deg); }
+}
+
+/* Section événements à venir */
+.upcoming-events {
+    background: var(--light);
+}
+
+/* Filtres */
+.event-filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--accent);
+}
+
+/* Loader */
+.events-loader {
+    text-align: center;
+    padding: 3rem;
+}
+
+.loader-chess {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.loader-chess span {
+    font-size: 2rem;
+    animation: bounce 0.6s infinite alternate;
+}
+
+.loader-chess span:nth-child(2) { animation-delay: 0.2s; }
+.loader-chess span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Grille d'événements */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.event-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.event-card.hidden {
+    display: none;
+}
+
+.event-header {
+    padding: 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-header.tournoi { background: linear-gradient(135deg, #667eea, #764ba2); }
+.event-header.stage { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.event-header.competition { background: linear-gradient(135deg, #fa709a, #fee140); }
+.event-header.special { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+
+.event-date {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.event-day {
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.event-month {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.event-type {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.event-body {
+    padding: 2rem;
+}
+
+.event-description {
+    color: var(--gray-dark);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.event-detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--gray);
+}
+
+.event-detail i {
+    width: 20px;
+    color: var(--accent);
+}
+
+.event-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+/* Message pas d'événements */
+.no-events {
+    text-align: center;
+    padding: 4rem;
+    color: var(--gray);
+}
+
+.no-events i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    opacity: 0.5;
+}
+
+/* Section calendrier */
+.calendar-section {
+    background: var(--white);
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calendar-nav {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--accent);
+    color: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-base);
+}
+
+.calendar-nav:hover {
+    transform: scale(1.1);
+    box-shadow: var(--shadow-md);
+}
+
+.calendar-month {
+    font-size: 1.5rem;
+    color: var(--primary);
+    min-width: 200px;
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    background: var(--light);
+    padding: 1.5rem;
+    border-radius: 16px;
+}
+
+.calendar-header {
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary);
+    padding: 0.75rem;
+}
+
+.calendar-day {
+    aspect-ratio: 1;
+    background: var(--white);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.calendar-day:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
+
+.calendar-day.other-month {
+    opacity: 0.3;
+}
+
+.calendar-day.today {
+    background: var(--accent);
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.calendar-day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+.calendar-day.has-event.tournoi::after { background: #667eea; }
+.calendar-day.has-event.stage::after { background: #f093fb; }
+.calendar-day.has-event.competition::after { background: #fa709a; }
+.calendar-day.has-event.special::after { background: #4facfe; }
+
+/* Légende calendrier */
+.calendar-legend {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.legend-dot.tournoi { background: #667eea; }
+.legend-dot.stage { background: #f093fb; }
+.legend-dot.competition { background: #fa709a; }
+.legend-dot.special { background: #4facfe; }
+
+/* Événements récurrents */
+.recurring-events {
+    background: var(--light);
+}
+
+.recurring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.recurring-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+}
+
+.recurring-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.recurring-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+.recurring-date {
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.recurring-info {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.recurring-info span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+/* Stages vacances */
+.holiday-camps {
+    background: var(--white);
+}
+
+.camps-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.camp-item {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    align-items: start;
+}
+
+.camp-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.camp-date {
+    flex-shrink: 0;
+    width: 100px;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.camp-month {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.camp-days {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.camp-content {
+    flex: 1;
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 12px;
+}
+
+.camp-content h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.camp-details {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.camp-details span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Compétitions officielles */
+.official-competitions {
+    background: var(--light);
+}
+
+.competitions-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.competition-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    border-top: 4px solid var(--accent);
+}
+
+.competition-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.competition-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.competition-header i {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+.competition-header h3 {
+    color: var(--primary);
+}
+
+.competition-date {
+    margin-top: 1rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.competition-cta {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 16px;
+}
+
+.competition-cta p {
+    margin-bottom: 1.5rem;
+    color: var(--gray-dark);
+}
+
+/* Newsletter section */
+.newsletter-section {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    padding: 4rem 0;
+}
+
+.newsletter-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-content h2 {
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.newsletter-form {
+    margin: 2rem 0;
+}
+
+.form-group {
+    display: flex;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group input {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+
+.newsletter-note {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-grid {
+        gap: 0.25rem;
+        padding: 1rem;
+    }
+    
+    .calendar-day {
+        font-size: 0.9rem;
+    }
+    
+    .camp-item,
+    .camp-item:nth-child(even) {
+        flex-direction: column;
+    }
+    
+    .form-group {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .event-filters {
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+    
+    .calendar-navigation {
+        gap: 1rem;
+    }
+    
+    .calendar-month {
+        font-size: 1.25rem;
+        min-width: 150px;
+    }
+}

@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog du club - Académie d'Échecs</title>
+
+  <!-- Styles globaux -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/blog.css">
+
+  <!-- Styles blog -->
+  <style>
+    .blog-hero{padding:4rem 0 2rem;text-align:center;background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);color:var(--white);}
+    .blog-layout{display:grid;grid-template-columns:220px 1fr;gap:2rem;margin-top:var(--spacing-xl);}
+    .blog-filters h4{margin-bottom:.5rem;}
+    .blog-filters ul{list-style:none;padding:0;}
+    .blog-filters li{cursor:pointer;margin:.25rem 0;transition:color .2s;}
+    .blog-filters li:hover{color:var(--accent);}
+    .blog-filters li.active{font-weight:700;color:var(--accent);}
+    #postGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--spacing-xl);}
+    .post-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-md);transition:transform .25s;display:block;color:inherit;text-decoration:none;}
+    .post-card:hover{transform:translateY(-6px);}
+    .post-card img{width:100%;height:180px;object-fit:cover;display:block;}
+    .post-card h3{font-size:1.2rem;margin:1rem;}
+    .post-card time{opacity:.6;font-size:.8rem;margin:0 1rem;display:block;}
+    .post-card p{margin:0 1rem 1rem;}
+    .search-wrap{max-width:600px;margin:0 auto 2rem;display:flex;gap:.5rem;}
+    .search-wrap input{flex:1;padding:.75rem 1rem;border-radius:50px;border:1px solid var(--gray-light);}
+    .pagination{display:flex;gap:.5rem;justify-content:center;margin-top:2rem;}
+    .pagination button{padding:.5rem 1rem;border:none;border-radius:8px;background:var(--accent);color:var(--primary);cursor:pointer;}
+    .pagination button[disabled]{opacity:.4;cursor:not-allowed;}
+    /* skeleton placeholder */
+    .skeleton{animation:pulse 1.5s infinite;background:#fff;}
+    .skeleton .sk-img{height:180px;background:var(--gray-light);}
+    .skeleton .sk-line{height:14px;background:var(--gray-light);margin:12px;}
+    @keyframes pulse{0%{opacity:.5;}50%{opacity:1;}100%{opacity:.5;}}
+  </style>
+
+  <!-- lunr pour recherche client si besoin futur; non utilisé ici -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js" defer></script>
+  <script src="../js/blog.js" defer></script>
+</head>
+<body>
+  <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="chess-loader">
+            <span class="piece">♔</span>
+            <span class="piece">♕</span>
+            <span class="piece">♖</span>
+            <span class="piece">♗</span>
+            <span class="piece">♘</span>
+            <span class="piece">♙</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <!-- Header (même structure) -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">♔</span>
+                <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="club.html">Présentation</a></li>
+                            <li><a href="ecole.html">École d'échecs</a></li>
+                            <li><a href="club.html#equipe">Notre équipe</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horaires.html" class="nav-link active">
+                            <i class="fas fa-clock"></i> Horaires
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="evenements.html" class="nav-link">
+                            <i class="fas fa-calendar"></i> Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="archives.html" class="nav-link">
+                            <i class="fas fa-archive"></i> Archives
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Articles </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+  <section class="blog-hero">
+    <h1>Blog du club</h1>
+    <p>Toutes nos actualités depuis 2008</p>
+    <div class="search-wrap">
+      <input type="text" id="searchInput" placeholder="Rechercher un article...">
+    </div>
+  </section>
+
+  <div class="breadcrumb container">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <span>Articles</span>
+    </div>
+
+  <section class="section">
+    <div class="container blog-layout">
+      <aside class="blog-filters">
+        <h4>Années</h4>
+        <ul id="yearList"></ul>
+      </aside>
+      <main>
+        <div id="postGrid"></div>
+        <div class="pagination" id="pagiWrap"></div>
+      </main>
+    </div>
+  </section>
+
+  <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Académie d'Échecs</h4>
+                    <p>Club FFE n°2624<br>
+                    15 avenue d'Annecy<br>
+                    73100 Aix-les-Bains</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="club.html">Le Club</a></li>
+                        <li><a href="horaires.html">Horaires</a></li>
+                        <li><a href="evenements.html">Événements</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens externes</h4>
+                    <ul>
+                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
+                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
+                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+</body>
+</html>

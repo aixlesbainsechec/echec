@@ -1,0 +1,609 @@
+/* ========================================
+   CSS Horaires - Académie d'Échecs
+   ======================================== */
+
+/* Hero minimaliste avec horloge */
+.page-hero.minimal {
+    min-height: 350px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.1;
+}
+
+/* Animation horloge */
+.clock-animation {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+
+.clock-face {
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--white);
+    border-radius: 50%;
+    position: relative;
+}
+
+.hour-hand, .minute-hand {
+    position: absolute;
+    background: var(--white);
+    transform-origin: bottom center;
+    left: 50%;
+    bottom: 50%;
+}
+
+.hour-hand {
+    width: 4px;
+    height: 60px;
+    margin-left: -2px;
+}
+
+.minute-hand {
+    width: 2px;
+    height: 80px;
+    margin-left: -1px;
+}
+
+.center-dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--white);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes rotate-hour {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotate-minute {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Section subtitle */
+.section-subtitle {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--gray);
+    margin-bottom: 3rem;
+}
+
+/* Planning interactif */
+.schedule-section {
+    background: var(--light);
+}
+
+/* Filtres */
+.schedule-filters {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--white);
+    border: 2px solid var(--gray-light);
+    border-radius: 50px;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.filter-btn.active {
+    background: var(--accent);
+    color: var(--primary);
+    border-color: var(--accent);
+}
+
+.filter-btn i {
+    font-size: 1.1rem;
+}
+
+/* Calendrier hebdomadaire */
+.weekly-schedule {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    overflow-x: auto;
+}
+
+.day-column {
+    min-width: 140px;
+}
+
+.day-header {
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary);
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 1rem;
+}
+
+.time-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.time-slot {
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.time-slot:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.time-slot.empty {
+    background: var(--gray-light);
+    color: var(--gray);
+    cursor: default;
+}
+
+.time-slot.empty:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* Catégories de créneaux */
+.time-slot.jeunes {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.time-slot.adultes {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+    color: white;
+}
+
+.time-slot.competition {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+    color: white;
+}
+
+.time-slot.libre {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: white;
+}
+
+.time-slot.online {
+    background: linear-gradient(135deg, #38ef7d, #11998e);
+    color: white;
+}
+
+/* Animation de filtrage */
+.time-slot.hidden {
+    opacity: 0.2;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.slot-time {
+    display: block;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.slot-title {
+    display: block;
+    font-size: 0.85rem;
+}
+
+.slot-level {
+    display: block;
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+/* Légende */
+.schedule-legend {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-color.jeunes {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.legend-color.adultes {
+    background: linear-gradient(135deg, #f093fb, #f5576c);
+}
+
+.legend-color.competition {
+    background: linear-gradient(135deg, #fa709a, #fee140);
+}
+
+.legend-color.libre {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+.legend-color.online {
+    background: linear-gradient(135deg, #38ef7d, #11998e);
+}
+
+/* Notes sous le planning */
+.schedule-notes {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: var(--light);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent);
+}
+
+.schedule-notes p {
+    margin-bottom: 0.5rem;
+}
+
+.schedule-notes p:last-child {
+    margin-bottom: 0;
+}
+
+/* Section tarifs */
+.pricing-section {
+    background: var(--white);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    padding: 2rem;
+    position: relative;
+    transition: all var(--transition-base);
+    overflow: hidden;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+}
+
+.pricing-card.featured {
+    border: 3px solid var(--accent);
+    transform: scale(1.05);
+}
+
+.pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.ribbon {
+    position: absolute;
+    top: 20px;
+    right: -30px;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 0.5rem 3rem;
+    transform: rotate(45deg);
+    font-size: 0.85rem;
+    font-weight: bold;
+    box-shadow: var(--shadow-sm);
+}
+
+.pricing-header {
+    text-align: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.pricing-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+}
+
+.price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.currency {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.period {
+    font-size: 1rem;
+    color: var(--gray);
+}
+
+.price-desc {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+.pricing-features {
+    padding: 2rem 0;
+}
+
+.pricing-features ul {
+    list-style: none;
+}
+
+.pricing-features li {
+    padding: 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.pricing-features i {
+    color: var(--success);
+    font-size: 1.1rem;
+}
+
+.pricing-footer {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+/* Tarif de passage */
+.passage-fee {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 12px;
+}
+
+/* Réductions */
+.discounts-section {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.discounts-section h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary);
+}
+
+.discount-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.discount-card {
+    background: var(--light);
+    padding: 2rem;
+    border-radius: 16px;
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.discount-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    background: var(--accent);
+}
+
+.discount-card:hover .discount-icon,
+.discount-card:hover h4,
+.discount-card:hover p {
+    color: var(--primary);
+}
+
+.discount-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    transition: all var(--transition-base);
+}
+
+.discount-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    transition: all var(--transition-base);
+}
+
+.discount-card p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    transition: all var(--transition-base);
+}
+
+/* FAQ Accordéon */
+.faq-section {
+    background: var(--light);
+}
+
+.faq-accordion {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border: none;
+    background: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all var(--transition-base);
+}
+
+.faq-question:hover {
+    background: var(--light);
+}
+
+.faq-question i {
+    transition: transform var(--transition-base);
+    color: var(--accent);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-base);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 300px;
+}
+
+.faq-answer p {
+    padding: 0 2rem 1.5rem;
+    color: var(--gray-dark);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .weekly-schedule {
+        overflow-x: scroll;
+        padding: 1rem;
+    }
+    
+    .day-column {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .schedule-filters {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+    }
+    
+    .filter-btn {
+        white-space: nowrap;
+    }
+    
+    .pricing-card.featured {
+        transform: scale(1);
+    }
+    
+    .pricing-card.featured:hover {
+        transform: translateY(-10px);
+    }
+    
+    .ribbon {
+        font-size: 0.75rem;
+        padding: 0.25rem 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .weekly-schedule {
+        grid-template-columns: repeat(7, minmax(100px, 1fr));
+    }
+    
+    .amount {
+        font-size: 2.5rem;
+    }
+    
+    .discount-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .faq-question {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+}

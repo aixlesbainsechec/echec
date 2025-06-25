@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Horaires et tarifs - Académie d'Échecs d'Aix-les-Bains">
+    <title>Horaires et Tarifs - Académie d'Échecs d'Aix-les-Bains</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/horaires.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="chess-loader">
+            <span class="piece">♔</span>
+            <span class="piece">♕</span>
+            <span class="piece">♖</span>
+            <span class="piece">♗</span>
+            <span class="piece">♘</span>
+            <span class="piece">♙</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <!-- Header (même structure) -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">♔</span>
+                <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="club.html">Présentation</a></li>
+                            <li><a href="ecole.html">École d'échecs</a></li>
+                            <li><a href="club.html#equipe">Notre équipe</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horaires.html" class="nav-link active">
+                            <i class="fas fa-clock"></i> Horaires
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="evenements.html" class="nav-link">
+                            <i class="fas fa-calendar"></i> Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="archives.html" class="nav-link">
+                            <i class="fas fa-archive"></i> Archives
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Articles </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero minimaliste -->
+    <section class="page-hero minimal">
+        <div class="hero-bg">
+            <div class="clock-animation">
+                <div class="clock-face">
+                    <div class="hour-hand"></div>
+                    <div class="minute-hand"></div>
+                    <div class="center-dot"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="page-title" data-aos="fade-down">Horaires & Tarifs</h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Saison 2024-2025
+            </p>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <span>Horaires & Tarifs</span>
+    </div>
+
+    <!-- Planning interactif -->
+    <section class="section schedule-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Planning de la semaine</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Hors vacances scolaires et jours fériés
+            </p>
+            
+            <!-- Filtres -->
+            <div class="schedule-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-calendar-week"></i> Tout voir
+                </button>
+                <button class="filter-btn" data-filter="jeunes">
+                    <i class="fas fa-child"></i> Jeunes
+                </button>
+                <button class="filter-btn" data-filter="adultes">
+                    <i class="fas fa-user"></i> Adultes
+                </button>
+                <button class="filter-btn" data-filter="competition">
+                    <i class="fas fa-trophy"></i> Compétition
+                </button>
+                <button class="filter-btn" data-filter="libre">
+                    <i class="fas fa-chess-board"></i> Club ouvert
+                </button>
+                <button class="filter-btn" data-filter="online">
+                    <i class="fas fa-laptop"></i> En ligne
+                </button>
+            </div>
+
+            <!-- Calendrier -->
+            <div class="weekly-schedule" data-aos="fade-up" data-aos-delay="200">
+                <!-- Lundi -->
+                <div class="day-column">
+                    <div class="day-header">Lundi</div>
+                    <div class="time-slots">
+                        <div class="time-slot online" data-category="online">
+                            <span class="slot-time">18h - 19h</span>
+                            <span class="slot-title">Cours Zoom</span>
+                            <span class="slot-level">Niveau 1</span>
+                        </div>
+                        <div class="time-slot online" data-category="online">
+                            <span class="slot-time">19h - 20h</span>
+                            <span class="slot-title">Cours Zoom</span>
+                            <span class="slot-level">Niveau 2</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mardi -->
+                <div class="day-column">
+                    <div class="day-header">Mardi</div>
+                    <div class="time-slots">
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">17h - 18h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 1 (Filles)</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">18h - 19h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 2 (Filles)</span>
+                        </div>
+                        <div class="time-slot online" data-category="online">
+                            <span class="slot-time">19h - 20h30</span>
+                            <span class="slot-title">Tournoi Lichess</span>
+                            <span class="slot-level">Membres du club</span>
+                        </div>
+                        <div class="time-slot libre" data-category="libre">
+                            <span class="slot-time">17h - 20h30</span>
+                            <span class="slot-title">Club Ouvert</span>
+                            <span class="slot-level">+16 ans</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mercredi -->
+                <div class="day-column">
+                    <div class="day-header">Mercredi</div>
+                    <div class="time-slots">
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">11h - 12h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 1</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">14h - 15h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 2</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">15h - 16h30</span>
+                            <span class="slot-title">Cours Elite</span>
+                            <span class="slot-level">Niveau 3</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">17h - 18h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 1</span>
+                        </div>
+                        <div class="time-slot libre" data-category="libre">
+                            <span class="slot-time">17h - 20h30</span>
+                            <span class="slot-title">Club Ouvert</span>
+                            <span class="slot-level">+16 ans</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Jeudi -->
+                <div class="day-column">
+                    <div class="day-header">Jeudi</div>
+                    <div class="time-slots">
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">17h - 18h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 1</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">18h - 19h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 2</span>
+                        </div>
+                        <div class="time-slot adultes" data-category="adultes">
+                            <span class="slot-time">19h - 20h30</span>
+                            <span class="slot-title">Cours Adultes</span>
+                            <span class="slot-level">Niveau 2+</span>
+                        </div>
+                        <div class="time-slot libre" data-category="libre">
+                            <span class="slot-time">17h - 20h30</span>
+                            <span class="slot-title">Club Ouvert</span>
+                            <span class="slot-level">+16 ans</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vendredi -->
+                <div class="day-column">
+                    <div class="day-header">Vendredi</div>
+                    <div class="time-slots">
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">17h - 18h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 1</span>
+                        </div>
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">18h - 19h</span>
+                            <span class="slot-title">Cours Enfants</span>
+                            <span class="slot-level">Niveau 2</span>
+                        </div>
+                        <div class="time-slot competition" data-category="competition">
+                            <span class="slot-time">19h - 22h</span>
+                            <span class="slot-title">Apéro Blitz</span>
+                            <span class="slot-level">131 Bd Wilson</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Samedi -->
+                <div class="day-column">
+                    <div class="day-header">Samedi</div>
+                    <div class="time-slots">
+                        <div class="time-slot jeunes" data-category="jeunes">
+                            <span class="slot-time">11h - 12h</span>
+                            <span class="slot-title">Cours -7 ans</span>
+                            <span class="slot-level">Petits poussins</span>
+                        </div>
+                        <div class="time-slot libre" data-category="libre">
+                            <span class="slot-time">11h - 12h30</span>
+                            <span class="slot-title">Club Ouvert</span>
+                            <span class="slot-level">Tous</span>
+                        </div>
+                        <div class="time-slot competition" data-category="competition">
+                            <span class="slot-time">14h - 17h</span>
+                            <span class="slot-title">Parties longues</span>
+                            <span class="slot-level">131 Bd Wilson</span>
+                        </div>
+                        <div class="time-slot competition" data-category="competition">
+                            <span class="slot-time">17h - 19h</span>
+                            <span class="slot-title">Tournoi Blitz</span>
+                            <span class="slot-level">3min+2s</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dimanche -->
+                <div class="day-column">
+                    <div class="day-header">Dimanche</div>
+                    <div class="time-slots">
+                        <div class="time-slot competition" data-category="competition">
+                            <span class="slot-time">14h - 19h</span>
+                            <span class="slot-title">Compétitions FIDE</span>
+                            <span class="slot-level">Trophée Riviera</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Légende -->
+            <div class="schedule-legend" data-aos="fade-up" data-aos-delay="300">
+                <div class="legend-item">
+                    <span class="legend-color jeunes"></span>
+                    <span>Cours Jeunes</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color adultes"></span>
+                    <span>Cours Adultes</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color competition"></span>
+                    <span>Compétition</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color libre"></span>
+                    <span>Club Ouvert</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color online"></span>
+                    <span>En ligne</span>
+                </div>
+            </div>
+
+            <div class="schedule-notes" data-aos="fade-up" data-aos-delay="400">
+                <p><strong>Note :</strong> Les cours enfants fonctionnent "à la volée" - les élèves peuvent venir le lundi, mardi ou jeudi selon leurs disponibilités.</p>
+                <p>Pendant les vacances scolaires, seul le club est ouvert à partir de 17h.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section class="section pricing-section" id="tarifs">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Nos Tarifs</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Licence FFE incluse dans tous les tarifs
+      </p>
+
+      <div class="pricing-grid">
+        <!-- Cotisation Espoir -->
+        <div class="pricing-card featured">
+          <!-- 🔥 data-aos enlevé -->
+          <div class="ribbon">Formule complète</div>
+          <div class="pricing-header">
+            <h3>Cotisation Espoir</h3>
+            <div class="price">
+              <span class="amount">290</span>
+              <span class="currency">€</span>
+              <span class="period">/an</span>
+            </div>
+            <p class="price-desc">Cours illimités + Licence</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> Cours illimités</li>
+              <li><i class="fas fa-check"></i> 3 séances/semaine minimum</li>
+              <li><i class="fas fa-check"></i> Licence FFE incluse</li>
+              <li><i class="fas fa-check"></i> Représentation du club</li>
+              <li><i class="fas fa-check"></i> Compétitions individuelles</li>
+              <li><i class="fas fa-check"></i> Compétitions par équipe</li>
+              <li><i class="fas fa-check"></i> Accès bibliothèque</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="contact.html" class="btn btn-primary">S'inscrire</a>
+          </div>
+        </div>
+
+        <!-- Cotisation Standard -->
+        <div class="pricing-card">
+          <!-- 🔥 data-aos et data-aos-delay retirés -->
+          <div class="pricing-header">
+            <h3>Cotisation Standard</h3>
+            <div class="price">
+              <span class="amount">230</span>
+              <span class="currency">€</span>
+              <span class="period">/an</span>
+            </div>
+            <p class="price-desc">1 cours/semaine + Licence</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> 1 cours par semaine</li>
+              <li><i class="fas fa-check"></i> Licence FFE incluse</li>
+              <li><i class="fas fa-check"></i> Accès jeu libre</li>
+              <li><i class="fas fa-check"></i> Tournois internes</li>
+              <li><i class="fas fa-check"></i> Apéro Blitz vendredi</li>
+              <li><i class="fas fa-check"></i> Accès bibliothèque</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="contact.html" class="btn btn-primary">S'inscrire</a>
+          </div>
+        </div>
+
+        <!-- Cotisation Club -->
+        <div class="pricing-card">
+          <!-- 🔥 data-aos et data-aos-delay retirés -->
+          <div class="pricing-header">
+            <h3>Cotisation Club</h3>
+            <div class="price">
+              <span class="amount">90</span>
+              <span class="currency">€</span>
+              <span class="period">/an</span>
+            </div>
+            <p class="price-desc">Sans cours + Licence</p>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li><i class="fas fa-check"></i> Licence FFE incluse</li>
+              <li><i class="fas fa-check"></i> Accès illimité au club</li>
+              <li><i class="fas fa-check"></i> Tournois internes</li>
+              <li><i class="fas fa-check"></i> Apéro Blitz vendredi</li>
+              <li><i class="fas fa-check"></i> Bibliothèque (+1000 ouvrages)</li>
+            </ul>
+          </div>
+          <div class="pricing-footer">
+            <a href="contact.html" class="btn btn-primary">S'inscrire</a>
+          </div>
+        </div>
+      </div>
+
+            <!-- Tarif de passage -->
+            <div class="passage-fee" data-aos="fade-up">
+                <p><strong>Cotisation gens de passage :</strong> 10€ (sans licence FFE)</p>
+            </div>
+
+            <!-- Réductions et aides -->
+            <div class="discounts-section" data-aos="fade-up">
+                <h3>Aides et réductions disponibles</h3>
+                <div class="discount-grid">
+                    <div class="discount-card">
+                        <div class="discount-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h4>Pass'Sport</h4>
+                        <p>-50€ pour les 6-18 ans</p>
+                    </div>
+                    <div class="discount-card">
+                        <div class="discount-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h4>Pass Région</h4>
+                        <p>-30€ (60€ situation handicap)</p>
+                    </div>
+                    <div class="discount-card">
+                        <div class="discount-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h4>Okay Savoie</h4>
+                        <p>100€ porte-monnaie électronique</p>
+                    </div>
+                    <div class="discount-card">
+                        <div class="discount-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h4>Chèques vacances</h4>
+                        <p>Acceptés</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Questions fréquentes</h2>
+            
+            <div class="faq-accordion" data-aos="fade-up" data-aos-delay="100">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Puis-je faire un cours d'essai gratuit ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui ! Nous proposons un cours d'essai gratuit sans engagement. 
+                        Contactez-nous par SMS au 06 15 40 29 71 pour réserver votre créneau.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Faut-il un certificat médical ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Vous devez remplir un questionnaire de santé. Si toutes les réponses sont négatives, 
+                        une simple attestation suffit. Sinon, un certificat médical est nécessaire.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Où se trouve le second lieu (131 Bd Wilson) ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Pour les activités du vendredi soir (Apéro Blitz) et du samedi après-midi, 
+                        nous sommes au 131 Boulevard Wilson à Aix-les-Bains. Le reste de la semaine, 
+                        les cours ont lieu au 15 avenue d'Annecy.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Comment s'inscrire en cours d'année ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Les inscriptions sont possibles toute l'année. Contactez-nous par SMS, 
+                        email ou venez directement au club aux heures d'ouverture.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Y a-t-il des cours pendant les vacances ?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Les cours suivent le calendrier scolaire. Pendant les vacances, 
+                        seul le club est ouvert à partir de 17h. Des stages sont organisés 
+                        (voir la section Événements).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Prêt à nous rejoindre ?</h2>
+                <p>Inscription possible toute l'année • Cours d'essai gratuit</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> S'inscrire
+                    </a>
+                    <a href="sms:0615402971" class="btn btn-secondary">
+                        <i class="fas fa-sms"></i> SMS : 06 15 40 29 71
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Académie d'Échecs</h4>
+                    <p>Club FFE n°2624<br>
+                    15 avenue d'Annecy<br>
+                    73100 Aix-les-Bains</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="club.html">Le Club</a></li>
+                        <li><a href="horaires.html">Horaires</a></li>
+                        <li><a href="evenements.html">Événements</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens externes</h4>
+                    <ul>
+                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
+                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
+                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/horaires.js"></script>
+</body>
+</html>

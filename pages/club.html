@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez l'Académie d'Échecs d'Aix-les-Bains - Histoire, palmarès et équipe">
+    <title>Le Club - Académie d'Échecs d'Aix-les-Bains</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/animations.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/club.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="chess-loader">
+            <span class="piece">♔</span>
+            <span class="piece">♕</span>
+            <span class="piece">♖</span>
+            <span class="piece">♗</span>
+            <span class="piece">♘</span>
+            <span class="piece">♙</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+    <!-- Header (même structure que index.html) -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">♔</span>
+                <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
+            </a>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="../index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Accueil
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link active">
+                            <i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="club.html">Présentation</a></li>
+                            <li><a href="ecole.html">École d'échecs</a></li>
+                            <li><a href="#equipe">Notre équipe</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="horaires.html" class="nav-link">
+                            <i class="fas fa-clock"></i> Horaires
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="evenements.html" class="nav-link">
+                            <i class="fas fa-calendar"></i> Événements
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="blog.html" class="nav-link">
+                            <i class="fas fa-archive"></i> Archives
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">
+                            <i class="fas fa-envelope"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                      ajax/libs/gsap/3.13.0/gsap.min.js
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="chess-pattern"></div>
+        <div class="hero-content">
+            <h1 class="page-title" data-aos="fade-up">Notre Club</h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Plus de 20 ans de passion échiquéenne en Savoie
+            </p>
+        </div>
+        <div class="hero-bottom-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,40 C480,120 960,120 1440,40 L1440,120 L0,120 Z" fill="#ffffff"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb container">
+        <a href="../index.html">Accueil</a>
+        <span>/</span>
+        <span>Le Club</span>
+    </div>
+
+    <!-- Introduction -->
+    <section class="section intro-section">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-content" data-aos="fade-right">
+                    <h2>L'Académie d'Échecs d'Aix-les-Bains</h2>
+                    <p class="lead">
+                        Fondée il y a plus de 20 ans, notre académie est devenue un pilier de la vie échiquéenne savoyarde. 
+                        Avec nos <strong>264 licenciés</strong>, 
+                        nous sommes l'un des clubs les plus jeunes et dynamiques de France.
+                    </p>
+                    <p>
+                        Notre philosophie ? Rendre les échecs accessibles à tous, du débutant curieux au joueur confirmé, 
+                        dans une ambiance conviviale et stimulante. Nous croyons que les échecs sont bien plus qu'un simple jeu : 
+                        c'est une école de vie qui développe la concentration, la stratégie et le respect de l'adversaire.
+                    </p>
+                    <div class="intro-stats">
+                        <div class="stat-box">
+                            <span class="stat-icon">♟️</span>
+                            <span class="stat-value">2624</span>
+                            <span class="stat-label">N° FFE</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">🏆</span>
+                            <span class="stat-value">41e</span>
+                            <span class="stat-label">Classement national</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-icon">📅</span>
+                            <span class="stat-value">20+</span>
+                            <span class="stat-label">Années d'existence</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="intro-visual" data-aos="fade-left">
+                    <div class="chess-board-3d">
+                        <div class="board-square"></div>
+                        <div class="board-square dark"></div>
+                        <div class="board-square"></div>
+                        <div class="board-square dark"></div>
+                        <div class="board-square dark"></div>
+                        <div class="board-square"></div>
+                        <div class="board-square dark"></div>
+                        <div class="board-square"></div>
+                        <div class="floating-piece">♔</div>
+                        <div class="floating-piece">♕</div>
+                        <div class="floating-piece">♖</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Histoire -->
+    <section class="section timeline-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Notre Histoire</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-date">2000s</div>
+                    <div class="timeline-content">
+                        <h3>Les débuts</h3>
+                        <p>Création de l'Académie d'Échecs d'Aix-les-Bains avec une poignée de passionnés.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-date">2013</div>
+                    <div class="timeline-content">
+                        <h3>Développement de l'école</h3>
+                        <p>Lancement des ateliers dans les écoles primaires, notamment à Saint-Joseph. 
+                        Les effectifs doublent grâce à notre approche pédagogique innovante.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-date">2016</div>
+                    <div class="timeline-content">
+                        <h3>Record au Championnat de France</h3>
+                        <p>8 qualifiés au Championnat de France Jeunes à Gonfreville. 
+                        41e place au classement des clubs, notre meilleur résultat historique.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <h3>Une nouvelle génération</h3>
+                        <p>Sohan CONTE devient Champion de Savoie U12. 
+                        Le club compte désormais 264 licenciés et continue sa progression.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item future" data-aos="fade-up" data-aos-delay="400">
+                    <div class="timeline-date">2025+</div>
+                    <div class="timeline-content">
+                        <h3>L'avenir</h3>
+                        <p>Objectif Top 30 français et développement d'une section compétition adulte renforcée.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Palmarès -->
+    <section class="section palmares-section" id="palmares">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Palmarès 2024-2025</h2>
+            
+            <div class="trophy-showcase">
+                <div class="trophy-card gold" data-aos="zoom-in">
+                    <div class="trophy-icon">🥇</div>
+                    <h3>Champions de Savoie</h3>
+                    <ul>
+                        <li>Sohan CONTE - U12</li>
+                        <li>Valentin PORCHERON - Benjamin</li>
+                        <li>Agathe PHILIPPE - Benjamine</li>
+                        <li>Aurian DURRIS-BOUCHEIX - U8</li>
+                    </ul>
+                </div>
+                
+                <div class="trophy-card silver" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="trophy-icon">🥈</div>
+                    <h3>Vice-Champions</h3>
+                    <ul>
+                        <li>Aaron TABAI - U12</li>
+                        <li>Hugo LAPILLE - Minime</li>
+                        <li>Sophia NAIT ATMANE - U8 Féminine</li>
+                    </ul>
+                </div>
+                
+                <div class="trophy-card bronze" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="trophy-icon">🥉</div>
+                    <h3>Performances notables</h3>
+                    <ul>
+                        <li>8 qualifiés Championnat de France</li>
+                        <li>6e place Alya BOUKHENFRA (Régional Féminin)</li>
+                        <li>Victoire Interclubs N4 vs Échirolles</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="achievement" data-aos="fade-up">
+                    <div class="achievement-icon">📊</div>
+                    <h4>Progression constante</h4>
+                    <p>+15 places au classement national en 3 ans</p>
+                </div>
+                <div class="achievement" data-aos="fade-up" data-aos-delay="100">
+                    <div class="achievement-icon">👥</div>
+                    <h4>Croissance des effectifs</h4>
+                    <p>+40% de membres en 2 ans</p>
+                </div>
+                <div class="achievement" data-aos="fade-up" data-aos-delay="200">
+                    <div class="achievement-icon">🎯</div>
+                    <h4>Taux de réussite</h4>
+                    <p>85% de progression Elo sur un an</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre équipe -->
+    <section class="section team-section" id="equipe">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Notre Équipe</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Des passionnés au service de votre progression
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member" data-aos="flip-left">
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <span class="avatar-icon">♔</span>
+                        </div>
+                        <h3>Jean-Pierre M.</h3>
+                        <p class="member-role">Président & Entraîneur principal</p>
+                        <p class="member-bio">
+                            24 années de chroniques échiquéennes, fondateur du blog historique. 
+                            Spécialiste de la pédagogie pour les jeunes.
+                        </p>
+                        <div class="member-stats">
+                            <span><i class="fas fa-trophy"></i> 1900+ Elo</span>
+                            <span><i class="fas fa-users"></i> 500+ élèves formés</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member" data-aos="flip-left" data-aos-delay="100">
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <span class="avatar-icon">♕</span>
+                        </div>
+                        <h3>Didier B.</h3>
+                        <p class="member-role">Vice-président & Photographe</p>
+                        <p class="member-bio">
+                            Responsable de la communication et de la documentation photo 
+                            de tous nos événements depuis 2013.
+                        </p>
+                        <div class="member-stats">
+                            <span><i class="fas fa-camera"></i> 10k+ photos</span>
+                            <span><i class="fas fa-calendar"></i> 10 ans au club</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member" data-aos="flip-left" data-aos-delay="200">
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <span class="avatar-icon">♖</span>
+                        </div>
+                        <h3>Sébastien I.</h3>
+                        <p class="member-role">Capitaine équipe N4</p>
+                        <p class="member-bio">
+                            2020 Elo, pilier de notre équipe adulte. 
+                            Mentor pour nos jeunes talents en compétition.
+                        </p>
+                        <div class="member-stats">
+                            <span><i class="fas fa-chess"></i> 2020 Elo</span>
+                            <span><i class="fas fa-medal"></i> Capitaine N4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member" data-aos="flip-left" data-aos-delay="300">
+                    <div class="member-card">
+                        <div class="member-avatar">
+                            <span class="avatar-icon">♗</span>
+                        </div>
+                        <h3>Eugène N.</h3>
+                        <p class="member-role">Entraîneur jeunes</p>
+                        <p class="member-bio">
+                            Champion du club online, spécialiste des ouvertures. 
+                            Anime les cours du samedi matin.
+                        </p>
+                        <div class="member-stats">
+                            <span><i class="fas fa-chalkboard-teacher"></i> Coach certifié</span>
+                            <span><i class="fas fa-star"></i> 1916 Elo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Valeurs du club -->
+    <section class="section values-section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nos Valeurs</h2>
+            
+            <div class="values-grid">
+                <div class="value-card" data-aos="fade-up">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Esprit d'équipe</h3>
+                    <p>Entraide et solidarité entre tous les membres, des débutants aux confirmés.</p>
+                </div>
+                
+                <div class="value-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="value-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Excellence pédagogique</h3>
+                    <p>Méthodes d'enseignement adaptées à chaque niveau et chaque âge.</p>
+                </div>
+                
+                <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion du jeu</h3>
+                    <p>Transmettre l'amour des échecs et le plaisir de jouer avant tout.</p>
+                </div>
+                
+                <div class="value-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Fair-play</h3>
+                    <p>Respect de l'adversaire et des règles, dans la victoire comme dans la défaite.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section gradient-bg">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2>Rejoignez l'aventure !</h2>
+                <p>Que vous soyez débutant ou joueur confirmé, vous trouverez votre place parmi nous</p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> S'inscrire
+                    </a>
+                    <a href="ecole.html" class="btn btn-secondary">
+                        <i class="fas fa-school"></i> Découvrir l'école
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (même structure que index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Académie d'Échecs</h4>
+                    <p>Club FFE n°2624<br>
+                    15 avenue d'Annecy<br>
+                    73100 Aix-les-Bains</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="club.html">Le Club</a></li>
+                        <li><a href="horaires.html">Horaires</a></li>
+                        <li><a href="evenements.html">Événements</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens externes</h4>
+                    <ul>
+                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
+                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
+                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suivez-nous</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/animations.js"></script>
+    <script src="../js/club.js"></script>
+</body>
+</html>
