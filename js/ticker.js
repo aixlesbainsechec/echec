@@ -21,7 +21,7 @@ async function fetchLastPosts() {
     const data = await fetch(API_ARTICLE).then(r => r.json());
     return data.map(p => ({
       html: `${icon('newspaper')}  ${p.title.rendered}`,
-      url : `blog/article.html?id=${p.id}`
+      url : `pages/article.html?id=${p.id}`
     }));
   } catch (e) {
     console.error('Posts:', e);
