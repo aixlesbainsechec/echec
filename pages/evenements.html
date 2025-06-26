@@ -210,54 +210,6 @@
         </div>
     </section>
 
-    <!-- Événements récurrents -->
-    <section class="section recurring-events">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Événements récurrents</h2>
-            
-            <div class="recurring-grid">
-                <div class="recurring-card" data-aos="flip-left">
-                    <div class="recurring-icon">
-                        <i class="fas fa-chess-clock"></i>
-                    </div>
-                    <h3>Tournoi Rapide Mensuel</h3>
-                    <p class="recurring-date">1er samedi du mois</p>
-                    <p>Tournoi en 7 rondes, cadence 15min+5s. Ouvert à tous les licenciés.</p>
-                    <div class="recurring-info">
-                        <span><i class="fas fa-clock"></i> 14h - 18h</span>
-                        <span><i class="fas fa-euro-sign"></i> 5€</span>
-                    </div>
-                </div>
-
-                <div class="recurring-card" data-aos="flip-left" data-aos-delay="100">
-                    <div class="recurring-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Blitz du Vendredi</h3>
-                    <p class="recurring-date">Tous les vendredis</p>
-                    <p>Tournoi blitz convivial 3min+2s. Ambiance décontractée garantie !</p>
-                    <div class="recurring-info">
-                        <span><i class="fas fa-clock"></i> 20h - 22h</span>
-                        <span><i class="fas fa-euro-sign"></i> Gratuit</span>
-                    </div>
-                </div>
-
-                <div class="recurring-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="recurring-icon">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <h3>Tournoi Jeunes</h3>
-                    <p class="recurring-date">3e dimanche du mois</p>
-                    <p>Réservé aux moins de 16 ans. Catégories par âge, lots pour tous.</p>
-                    <div class="recurring-info">
-                        <span><i class="fas fa-clock"></i> 14h - 17h</span>
-                        <span><i class="fas fa-euro-sign"></i> 3€</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Stages vacances -->
     <section class="section holiday-camps">
         <div class="container">
@@ -372,23 +324,31 @@
 
     <!-- CTA Newsletter -->
     <section class="newsletter-section">
-        <div class="container">
-            <div class="newsletter-content" data-aos="zoom-in">
-                <h2>Ne manquez aucun événement !</h2>
-                <p>Inscrivez-vous à notre newsletter pour recevoir le programme mensuel</p>
-                <form class="newsletter-form" id="newsletterForm">
-                    <div class="form-group">
-                        <input type="email" placeholder="Votre email" required>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i> S'inscrire
-                        </button>
-                    </div>
-                </form>
-                <p class="newsletter-note">
-                    <i class="fas fa-lock"></i> Vos données restent confidentielles
-                </p>
+      <div class="container">
+        <div class="newsletter-content">
+          <h2>Ne manquez aucun article !</h2>
+          <p>Recevez un email dès qu’un nouveau billet est publié sur notre blog.</p>
+
+          <form action="https://subscribe.wordpress.com" method="post"
+                accept-charset="utf-8" id="subscribe-blog" class="newsletter-form">
+            <!-- champs cachés exigés par Jetpack -->
+            <input type="hidden" name="action"   value="subscribe">
+            <input type="hidden" name="blog_id"  value="16244965"><!-- id du blog WP -->
+            <input type="hidden" name="source"   value="https://aixlesbainsechecs.org/">
+            <input type="hidden" name="sub-type" value="widget">
+            <input type="hidden" name="redirect_fragment" value="subscribe-blog">
+
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Votre email" required>
+              <button type="submit" class="btn btn-primary">S’abonner</button>
             </div>
+          </form>
+
+          <p class="newsletter-note">
+            <i class="fas fa-lock"></i> Adresse stockée par WordPress.com – désabonnement à tout moment.
+          </p>
         </div>
+      </div>
     </section>
 
     <!-- Footer -->
