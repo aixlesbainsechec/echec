@@ -1,0 +1,6 @@
+/* Overrides/Hotfix – charte rapide */
+
+p a, .footer a{ text-decoration: underline dotted rgba(255,255,255,.25) }
+p a:hover, .footer a:hover{ text-decoration: underline }
+
+.ticker{ animation-duration: 55s }

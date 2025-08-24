@@ -1,20 +1,118 @@
-.blog-layout > main{
-  min-width:0;          /* ← autorise la colonne “1fr” à rétrécir */
+/* ======================================================
+   Blog – Hero avec Tour 3D + grille d’articles
+   ====================================================== */
+.blog-hero{
+  position:relative;
+  min-height:440px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 60%, var(--accent) 100%);
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; margin-top: var(--header-height, 70px);
+  color:var(--white);
+}
+.chess-pattern{
+  position:absolute; inset:0; opacity:.15; pointer-events:none;
+  background:
+    conic-gradient(from 90deg at 25% 25%, transparent 0 90deg, rgba(255,255,255,.18) 0 180deg, transparent 0 270deg, rgba(255,255,255,.18) 0) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.0));
+  animation: patternShift 20s linear infinite;
+}
+@keyframes patternShift{
+  0%{ background-position: 0 0, 0 0;}
+  100%{ background-position: 80px 80px, 200px 0;}
+}
+.hero-bottom-wave{ position:absolute; bottom:-1px; left:0; right:0; height:120px }
+.blog-hero .hero-content{ position:relative; text-align:center; z-index:2; }
+.blog-hero .page-title{ color:#fff; margin:0 0 .25rem; }
+.blog-hero .page-subtitle{ opacity:.95; }
+
+/* Tour 3D (rook) */
+.intro-visual{ position:absolute; left:60%; padding-bottom:20px; z-index:1; }
+.rook3d{
+  --size: min(52vmin, 520px);
+  --layers: 56;
+  --thickness: 0.42px;
+  width: var(--size); height: var(--size);
+  display:grid; place-items:center; perspective:1100px;
+}
+.rook3d-stack{ width:64%; height:64%; position:relative; transform-style:preserve-3d; }
+.rook3d-layer{ position:absolute; inset:0; display:grid; place-items:center; transform-style:preserve-3d; }
+.rook3d-layer i{
+  font-size: calc(var(--size) * .58);
+  line-height:1; display:block;
+  background: linear-gradient(135deg, var(--accent) 0%, #ffffff 38%, var(--secondary) 58%, var(--primary) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.18));
+}
+.rook3d-layer[data-inner="1"] i{ opacity:.88; }
+.rook3d-layer[data-inner="2"] i{ opacity:.78; }
+.rook3d-shadow{
+  position:absolute; bottom:2%; width:80%; height:8%;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(0,0,0,.28), rgba(0,0,0,0) 70%);
+  filter: blur(2px); pointer-events:none;
+}
+@media (prefers-reduced-motion: reduce){
+  .rook3d, .rook3d-stack{ animation: none !important; }
 }
 
-.blog-layout{display:grid;grid-template-columns:220px 1fr;gap:2rem;}
-.blog-filters ul{list-style:none;padding:0;}
-.blog-filters li{cursor:pointer;margin:.25rem 0;}
-.blog-filters li.active{font-weight:700;color:var(--accent);}
+/* Search */
+.search-wrap{
+  max-width:660px; margin:1.2rem auto 0; display:flex; gap:.6rem; align-items:center;
+}
+.search-wrap input{
+  flex:1; padding:.9rem 1.1rem; border-radius:999px; border:1px solid var(--gray-light); background:#fff; color:var(--text);
+}
+.search-wrap .btn{ white-space:nowrap; }
 
+/* Layout */
+.blog-layout{
+  display:grid; grid-template-columns:240px 1fr; gap:2rem; margin-top: var(--spacing-xl, 2.5rem);
+}
+.blog-filters h4{ margin-bottom:.5rem; color:var(--primary); }
+.blog-filters ul{ list-style:none; padding:0; margin:0; }
+.blog-filters li{
+  cursor:pointer; margin:.25rem 0; transition:color .2s; padding:.25rem 0;
+}
+.blog-filters li:hover{ color:var(--accent); }
+.blog-filters li.active{ font-weight:700; color:var(--accent); }
+
+/* Grid / cards */
 #postGrid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); /* 280px → 240px */
-  gap:var(--spacing-xl);
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-xl, 2rem);
 }
+.post-card{
+  border-radius:16px; overflow:hidden; box-shadow:var(--shadow-md);
+  transition: transform .25s, box-shadow .25s; display:block; color:inherit; text-decoration:none; background:#fff;
+}
+.post-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+.post-thumb{ width:100%; height:180px; object-fit:cover; display:block; background:var(--light); }
+.post-body{ padding:1rem 1rem 1.1rem; }
+.post-card h3{ font-size:1.08rem; margin:.35rem 0 .35rem; color:var(--primary); line-height:1.35; }
+.post-meta{ opacity:.65; font-size:.86rem; }
+.post-excerpt{ color:var(--gray-dark); margin-top:.25rem; line-height:1.5; }
 
-/* ② Quand on n’a plus assez de place pour l’aside, on empile */
-@media (max-width: 1024px){
-  .blog-layout{grid-template-columns:1fr;} /* aside au-dessus, plus de débordement */
-  .blog-filters{margin-bottom:2rem;}       /* petit espace sous les filtres */
+/* Pagination */
+.pagination{
+  display:flex; gap:.5rem; justify-content:center; margin-top:1.5rem; overflow:auto; padding-bottom:12px;
+}
+.pagination button{
+  padding:.5rem .9rem; border:none; border-radius:8px; color:var(--primary); background:var(--light);
+  cursor:pointer; transition: transform .2s, box-shadow .2s, background .2s;
+}
+.pagination button[disabled]{ opacity:.5; cursor:not-allowed; }
+.pagination button:not([disabled]):hover{ transform: translateY(-2px); box-shadow:var(--shadow-sm); background:#fff; }
+
+/* Skeletons */
+.skeleton{ animation:pulse 1.5s infinite; background:#fff; border-radius:16px; overflow:hidden; box-shadow:var(--shadow-sm); }
+.skeleton .sk-img{ height:180px; background:linear-gradient(90deg, #eee, #f5f5f5, #eee); }
+.skeleton .sk-line{ height:14px; margin:12px; background:linear-gradient(90deg, #eee, #f5f5f5, #eee); border-radius:6px; }
+@keyframes pulse{ 0%{opacity:.6} 50%{opacity:1} 100%{opacity:.6} }
+
+/* Responsive */
+@media (max-width: 992px){
+  .intro-visual{ position:absolute; right:2%; left:auto; transform: scale(.9); }
+  .blog-layout{ grid-template-columns:1fr; }
+}
+@media (max-width: 560px){
+  .blog-hero{ min-height:360px; }
+  .intro-visual{ right:-6%; transform: scale(.8); }
 }

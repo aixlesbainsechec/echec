@@ -1,64 +1,96 @@
-/* ==========================================
-   Bande défilante dynamique
-   ========================================== */
-const TICKER      = document.getElementById('ticker');
-const SITE_WP     = 'aixlesbainsechecs.org';
-const API_ARTICLE = `https://public-api.wordpress.com/wp/v2/sites/${SITE_WP}/posts?_fields=id,title,link&per_page=4&orderby=date&order=desc`;
-const API_EVENTS  = 'js/events.json';   // <- ton export JSON du planning (voir plus bas)
+/* ==============================================================
+   Bande défilante dynamique – v2025-07-03
+   - Articles récents (WordPress API)
+   - CTA statiques
+   - Prochain événement (Google Sheet)
+   ============================================================== */
 
-/* ---------- helpers ---------- */
-const icon = i => `<i class="fas fa-${i}"></i>`;
+/* █ 1.  CONSTANTES ──────────────────────────────────────────── */
+const TICKER = document.getElementById("ticker");
 
-/* ---------- bloc CTA statiques ---------- */
+/* 1-a)  Articles WordPress ----------------------------------- */
+const WP_SITE   = "aixlesbainsechecs.org";   // domaine du blog
+const WP_POSTS  = `https://public-api.wordpress.com/wp/v2/sites/${WP_SITE}/posts`
+               +  "?_fields=id,title,link&per_page=4&orderby=date&order=desc";
+
+/* 1-b)  Google Sheet  ---------------------------------------- */
+const SHEET_ID  = "1Nku_OIPzC1gW56sBnekMxUVqZLtOqJoNmFgnmfIDyQ4";
+const TAB_GID   = "1";                       // onglet « Événements »
+const SHEET_URL = `https://opensheet.elk.sh/${SHEET_ID}/${TAB_GID}`;
+
+/* 1-c) CTA permanents ---------------------------------------- */
 const STATIC_ITEMS = [
-  { html: `${icon('user-plus')}  Inscription 2025-2026`, url: 'pages/horaires.html#tarifs' },
-  { html: `${icon('envelope')}  Contactez-nous`,        url: 'pages/contact.html' }
+  { html: icn("user-plus") + "  Inscriptions 2025-2026", url: "pages/horaires.html#tarifs" },
+  { html: icn("envelope")  + "  Contactez-nous",         url: "pages/contact.html" }
 ];
 
-/* ---------- fetch derniers articles ---------- */
-async function fetchLastPosts() {
-  try {
-    const data = await fetch(API_ARTICLE).then(r => r.json());
-    return data.map(p => ({
-      html: `${icon('newspaper')}  ${p.title.rendered}`,
+/* █ 2.  HELPERS ─────────────────────────────────────────────── */
+function icn(name){ return `<i class="fas fa-${name}"></i>`; }
+function pad(n){ return n.toString().padStart(2,"0"); }
+function isoDate(d,y){ const m=d.getMonth()+1, dd=d.getDate(); return `${y??d.getFullYear()}-${pad(m)}-${pad(dd)}`; }
+
+/* █ 3.  ARTICLES WP ─────────────────────────────────────────── */
+async function getLastPosts(){
+  try{
+    const posts = await (await fetch(WP_POSTS)).json();
+    return posts.map(p => ({
+      html: icn("newspaper") + "  " + p.title.rendered,
       url : `pages/article.html?id=${p.id}`
     }));
-  } catch (e) {
-    console.error('Posts:', e);
+  }catch(err){
+    console.error("Ticker – posts :",err);
     return [];
   }
 }
 
-/* ---------- événement du jour ---------- */
-async function fetchTodayEvent() {
-  try {
-    /* exemple : un petit JSON statique {date:"2025-06-26",title:"Apéro Blitz",url:"pages/evenements.html"} */
-    const data = await fetch(API_EVENTS).then(r => r.json());
-    const today = new Date().toISOString().slice(0, 10);
-    const ev = data.find(e => e.date === today);
-    return ev
-      ? [{ html: `${icon('calendar-check')}  ${ev.title} aujourd’hui`, url: ev.url }]
-      : [];
-  } catch (e) {
-    console.error('Event:', e);
+/* █ 4.  PROCHAIN ÉVÉNEMENT ─────────────────────────────────── */
+async function getNextEvent(){
+  try{
+    const rows = await (await fetch(SHEET_URL,{cache:"no-store"})).json(); // tableau d’objets
+    if(!Array.isArray(rows)) throw new Error("Format Sheet inattendu");
+
+    /* ► on convertit chaque ligne en Date JS */
+    const today       = new Date();
+    const horizonPlus = new Date(today); horizonPlus.setDate(horizonPlus.getDate()+30); // chercher dans les 30 j
+    const monthIdx    = abbr => ["JAN","FÉV","MAR","AVR","MAI","JUIN","JUIL","AOÛT","SEPT","OCT","NOV","DÉC"].indexOf(abbr);
+
+    const upcoming = rows
+      .filter(r => r.day && r.month && r.year)          // lignes datées
+      .map(r => {
+        const d = new Date(r.year, monthIdx(r.month), r.day);
+        return {...r, dateObj:d};
+      })
+      .filter(r => r.dateObj >= today && r.dateObj <= horizonPlus) // entre aujourd’hui et +30 j
+      .sort((a,b)=>a.dateObj-b.dateObj)[0];                         // plus proche
+
+    if(!upcoming) return [];
+
+    const prettyDate = upcoming.dateObj.toLocaleDateString("fr-FR",{ day:"numeric", month:"short" });
+    return [{
+      html: icn("calendar-check") + `  ${upcoming.title} – ${prettyDate}`,
+      url : "pages/evenements.html#eventsGrid"
+    }];
+  }catch(err){
+    console.error("Ticker – event :",err);
     return [];
   }
 }
 
-/* ---------- build ticker ---------- */
-(async function initTicker() {
+/* █ 5.  CONSTRUCTION DU TICKER ─────────────────────────────── */
+(async function initTicker(){
   const items = [
-    ...(await fetchLastPosts()),
+    ...(await getLastPosts()),
     ...STATIC_ITEMS,
-    ...(await fetchTodayEvent())
+    ...(await getNextEvent())
   ];
 
-  if (!items.length) return;
+  if(!items.length){ TICKER.style.display = "none"; return; }
 
+  /* • contenu */
   TICKER.innerHTML = items
     .map(i => `<div class="ticker-item"><a href="${i.url}">${i.html}</a></div>`)
-    .join('');
+    .join("");
 
-  /* duplication pour l’infini */
-  TICKER.innerHTML += TICKER.innerHTML;
+  /* • duplication pour défilement infini */
+  TICKER.innerHTML += TICKER.innerHTML + TICKER.innerHTML;
 })();

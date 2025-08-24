@@ -1,510 +1,256 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="École d'échecs d'Aix-les-Bains - Cours pour enfants et adultes, méthode ludique et progressive">
-    <title>École d'échecs - Académie d'Échecs d'Aix-les-Bains</title>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/animations.css">
-    <link rel="stylesheet" href="../css/responsive.css">
-    <link rel="stylesheet" href="../css/ecole.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="École d'échecs d'Aix-les-Bains - Cours pour enfants et adultes, méthode ludique et progressive"/>
+  <title>École d'échecs - Académie d'Échecs d'Aix-les-Bains</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/responsive.css"/>
+  <link rel="stylesheet" href="../css/ecole.css"/>
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
 </head>
-<body>
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="chess-loader">
-            <span class="piece">♔</span>
-            <span class="piece">♕</span>
-            <span class="piece">♖</span>
-            <span class="piece">♗</span>
-            <span class="piece">♘</span>
-            <span class="piece">♙</span>
-        </div>
+<body data-no-hero>
+  <!-- Loader -->
+  <div class="loader" id="loader">
+    <div class="chess-loader">
+      <span class="piece">♔</span><span class="piece">♕</span><span class="piece">♖</span>
+      <span class="piece">♗</span><span class="piece">♘</span><span class="piece">♙</span>
     </div>
+  </div>
 
-    <!-- Progress Bar -->
-    <div class="progress-bar" id="progressBar"></div>
-    <!-- Header (même structure) -->
-    <header class="header" id="header">
-        <nav class="nav container">
-            <a href="../index.html" class="nav-logo">
-                <span class="logo-icon">♔</span>
-                <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
-            </a>
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
 
-            <div class="nav-menu" id="navMenu">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="../index.html" class="nav-link">
-                            <i class="fas fa-home"></i> Accueil
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link active">
-                            <i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="club.html">Présentation</a></li>
-                            <li><a href="ecole.html">École d'échecs</a></li>
-                            <li><a href="club.html#equipe">Notre équipe</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="horaires.html" class="nav-link">
-                            <i class="fas fa-clock"></i> Horaires
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="evenements.html" class="nav-link">
-                            <i class="fas fa-calendar"></i> Événements
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="blog.html" class="nav-link">
-                            <i class="fas fa-archive"></i> Archives
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">
-                            <i class="fas fa-envelope"></i> Contact
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                      ajax/libs/gsap/3.13.0/gsap.min.js
-                    </li>
-                </ul>
-            </div>
+  <!-- Header (identique index) -->
+  <header class="header site-header" id="header">
+    <nav class="nav container" aria-label="Navigation principale">
+      <a href="../index.html" class="nav-logo" aria-label="Accueil">
+        <img src="../assets/img/wordmark_thufts.png" alt="Académie d’Échecs Aix-les-Bains" class="site-logo"/>
+      </a>
 
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link active"><i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+              <li><a href="club.html">Présentation</a></li>
+              <li><a href="ecole.html">École d'échecs</a></li>
+              <li><a href="club.html#equipe">Notre équipe</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="horaires.html" class="nav-link"><i class="fas fa-clock"></i> Horaires</a></li>
+          <li class="nav-item"><a href="evenements.html" class="nav-link"><i class="fas fa-calendar"></i> Événements</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link"><i class="fas fa-archive"></i> Articles</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+      </div>
 
-    <!-- Hero avec animation -->
-    <section class="school-hero">
-        <div class="animated-bg">
-            <div class="chess-piece piece-1">♙</div>
-            <div class="chess-piece piece-2">♘</div>
-            <div class="chess-piece piece-3">♗</div>
-            <div class="chess-piece piece-4">♖</div>
-            <div class="chess-piece piece-5">♕</div>
-            <div class="chess-piece piece-6">♔</div>
-        </div>
-        <div class="hero-content">
-            <h1 class="page-title" data-aos="fade-down">École d'Échecs</h1>
-            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
-                De l'initiation à la maîtrise, un parcours adapté à chacun
-            </p>
-            <div class="hero-badges" data-aos="fade-up" data-aos-delay="400">
-                <span class="badge">🎯 Dès 6 ans</span>
-                <span class="badge">📚 Méthode ludique</span>
-                <span class="badge">🏆 Préparation compétition</span>
-            </div>
-        </div>
-    </section>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumb container">
-        <a href="../index.html">Accueil</a>
-        <span>/</span>
-        <a href="club.html">Le Club</a>
-        <span>/</span>
-        <span>École d'échecs</span>
+  <!-- Hero -->
+  <section class="school-hero">
+    <div class="intro-visual" data-aos="fade-left">
+      <div class="bishop3d" id="bishop3d" aria-label="Reine cristal 3D">
+        <div class="bishop3d-stack" id="bishopStack" aria-hidden="true"></div>
+      </div>
     </div>
+    <div class="hero-content">
+      <h1 class="page-title" data-aos="fade-down">École d'Échecs</h1>
+      <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+        De l'initiation à la maîtrise, un parcours adapté à chacun
+      </p>
+      <div class="hero-badges" id="heroBadges" data-aos="fade-up" data-aos-delay="400"></div>
+      <div class="chess-pattern" aria-hidden="true"></div>
+    </div>
+        <div class="hero-bottom-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,40 C480,120 960,120 1440,40 L1440,120 L0,120 Z" fill="#ffffff"></path>
+      </svg>
+    </div>
+  </section>
 
-    <!-- Présentation de l'école -->
-    <section class="section school-intro">
-        <div class="container">
-            <div class="intro-wrapper">
-                <div class="intro-text" data-aos="fade-right">
-                    <h2>Apprendre les échecs autrement</h2>
-                    <p class="lead">
-                        Notre école d'échecs combine <strong>tradition et modernité</strong> pour offrir 
-                        un enseignement de qualité dans une ambiance conviviale et stimulante.
-                    </p>
-                    <p>
-                        Depuis plus de 10 ans, nous formons les champions de demain avec une approche 
-                        pédagogique innovante : tablettes numériques, exercices interactifs, et surtout 
-                        beaucoup de pratique et de plaisir !
-                    </p>
-                    <div class="intro-features">
-                        <div class="feature">
-                            <i class="fas fa-users"></i>
-                            <span>Groupes de niveau homogène</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-tablet-alt"></i>
-                            <span>Outils numériques modernes</span>
-                        </div>
-                        <div class="feature">
-                            <i class="fas fa-trophy"></i>
-                            <span>Préparation aux tournois</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="intro-visual" data-aos="fade-left">
-                    <div class="visual-card card-1">
-                        <i class="fas fa-child"></i>
-                        <h4>Cours Jeunes</h4>
-                        <p>6-16 ans</p>
-                    </div>
-                    <div class="visual-card card-2">
-                        <i class="fas fa-user-graduate"></i>
-                        <h4>Cours Adultes</h4>
-                        <p>Tous niveaux</p>
-                    </div>
-                    <div class="visual-card card-3">
-                        <i class="fas fa-school"></i>
-                        <h4>Interventions</h4>
-                        <p>Écoles primaires</p>
-                    </div>
-                    <div class="visual-card card-4">
-                        <i class="fas fa-laptop"></i>
-                        <h4>Cours en ligne</h4>
-                        <p>Bientôt disponible</p>
-                    </div>
-                </div>
-            </div>
+  <!-- Breadcrumb -->
+  <div class="breadcrumb container">
+    <a href="../index.html">Accueil</a><span>/</span><a href="club.html">Le Club</a><span>/</span><span>École d'échecs</span>
+  </div>
+
+  <!-- Intro -->
+  <section class="section school-intro">
+    <div class="container">
+      <div class="intro-wrapper">
+        <div class="intro-text" data-aos="fade-right">
+          <h2>Apprendre les échecs autrement</h2>
+          <p class="lead">
+            Notre école d'échecs combine <strong>tradition et modernité</strong> pour offrir un enseignement de qualité
+            dans une ambiance conviviale et stimulante.
+          </p>
+          <p>
+            Depuis plus de 10 ans, nous formons les champions de demain avec une approche pédagogique innovante :
+            exercices interactifs et surtout beaucoup de pratique !
+          </p>
+          <div class="intro-features">
+            <div class="feature"><i class="fas fa-users"></i><span>Groupes de niveau homogène</span></div>
+            <div class="feature"><i class="fas fa-tablet-alt"></i><span>Outils numériques modernes</span></div>
+            <div class="feature"><i class="fas fa-trophy"></i><span>Préparation aux tournois</span></div>
+          </div>
         </div>
-    </section>
 
-    <!-- Niveaux de cours -->
-    <section class="section levels-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Nos parcours de formation</h2>
-            
-            <div class="levels-grid">
-                <!-- Débutants -->
-                <div class="level-card beginner" data-aos="zoom-in">
-                    <div class="level-header">
-                        <div class="level-icon">♟️</div>
-                        <h3>Initiation</h3>
-                        <span class="level-tag">Débutants</span>
-                    </div>
-                    <div class="level-content">
-                        <h4>Objectifs :</h4>
-                        <ul>
-                            <li>Apprendre les règles du jeu</li>
-                            <li>Maîtriser les déplacements</li>
-                            <li>Comprendre l'échec et mat</li>
-                            <li>Connaître les principes de base</li>
-                        </ul>
-                        <div class="level-info">
-                            <span><i class="fas fa-clock"></i> 1h30 par semaine</span>
-                            <span><i class="fas fa-users"></i> 8 élèves max</span>
-                        </div>
-                        <p class="level-description">
-                            Cours ludiques avec exercices pratiques, mini-tournois et récompenses. 
-                            Méthode progressive adaptée aux plus jeunes.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Perfectionnement -->
-                <div class="level-card intermediate" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="level-header">
-                        <div class="level-icon">♝</div>
-                        <h3>Perfectionnement</h3>
-                        <span class="level-tag">Intermédiaires</span>
-                    </div>
-                    <div class="level-content">
-                        <h4>Objectifs :</h4>
-                        <ul>
-                            <li>Approfondir la tactique</li>
-                            <li>Étudier les ouvertures</li>
-                            <li>Analyser ses parties</li>
-                            <li>Développer sa stratégie</li>
-                        </ul>
-                        <div class="level-info">
-                            <span><i class="fas fa-clock"></i> 2h par semaine</span>
-                            <span><i class="fas fa-users"></i> 10 élèves max</span>
-                        </div>
-                        <p class="level-description">
-                            Travail sur ordinateur, analyse de parties de grands maîtres, 
-                            préparation aux premières compétitions officielles.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Compétition -->
-                <div class="level-card advanced" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="level-header">
-                        <div class="level-icon">♛</div>
-                        <h3>Compétition</h3>
-                        <span class="level-tag">Confirmés</span>
-                    </div>
-                    <div class="level-content">
-                        <h4>Objectifs :</h4>
-                        <ul>
-                            <li>Préparer les championnats</li>
-                            <li>Améliorer son classement Elo</li>
-                            <li>Maîtriser les finales</li>
-                            <li>Gérer le temps et le stress</li>
-                        </ul>
-                        <div class="level-info">
-                            <span><i class="fas fa-clock"></i> 3h par semaine</span>
-                            <span><i class="fas fa-users"></i> 6 élèves max</span>
-                        </div>
-                        <p class="level-description">
-                            Entraînement intensif avec analyse approfondie, préparation mentale 
-                            et suivi personnalisé pour les compétiteurs.
-                        </p>
-                    </div>
-                </div>
-            </div>
+        <div class="intro-visual" data-aos="fade-left">
+          <div class="visual-card card-1">
+            <i class="fas fa-child"></i><h4>Cours Jeunes</h4><p>6–16 ans</p>
+          </div>
+          <div class="visual-card card-2">
+            <i class="fas fa-user-graduate"></i><h4>Cours Adultes</h4><p>Tous niveaux</p>
+          </div>
+          <div class="visual-card card-3">
+            <i class="fas fa-school"></i><h4>Interventions</h4><p>Écoles primaires</p>
+          </div>
+          <div class="visual-card card-4">
+            <i class="fas fa-laptop"></i><h4>Cours en ligne</h4><p>Bientôt disponible</p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Méthode pédagogique -->
-    <section class="section method-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Notre méthode</h2>
-            
-            <div class="method-timeline">
-                <div class="method-step" data-aos="fade-right">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Évaluation initiale</h3>
-                        <p>Test de niveau pour intégrer le groupe adapté et définir les objectifs personnalisés.</p>
-                    </div>
-                </div>
-                
-                <div class="method-step" data-aos="fade-left" data-aos-delay="100">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Apprentissage progressif</h3>
-                        <p>Cours structurés alternant théorie, pratique et exercices interactifs sur tablette.</p>
-                    </div>
-                </div>
-                
-                <div class="method-step" data-aos="fade-right" data-aos-delay="200">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Mise en pratique</h3>
-                        <p>Tournois internes, parties commentées et analyse collective des coups.</p>
-                    </div>
-                </div>
-                
-                <div class="method-step" data-aos="fade-left" data-aos-delay="300">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Suivi personnalisé</h3>
-                        <p>Bilan régulier avec les parents et ajustement du programme selon la progression.</p>
-                    </div>
-                </div>
-            </div>
+  <!-- Parcours -->
+  <section class="section levels-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Nos parcours de formation</h2>
+      <div class="levels-grid" id="levelsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Méthode (statique) -->
+  <section class="section method-section">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Notre méthode</h2>
+      <div class="method-timeline">
+        <div class="method-step" data-aos="fade-right">
+          <div class="step-number">1</div><div class="step-content"><h3>Évaluation initiale</h3><p>Test de niveau pour intégrer le groupe adapté et définir les objectifs.</p></div>
         </div>
-    </section>
-
-    <!-- Témoignages -->
-    <section class="section testimonials-section">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Ils témoignent</h2>
-            
-            <div class="testimonials-carousel">
-                <div class="testimonial-card" data-aos="flip-left">
-                    <div class="testimonial-content">
-                        <p>"Ma fille Lison-Marie a découvert les échecs au club et c'est devenu une vraie passion. 
-                        L'équipe est formidable et la méthode parfaitement adaptée aux enfants."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👨</div>
-                        <div class="author-info">
-                            <h4>Parent d'élève</h4>
-                            <span>Octobre 2024</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="100">
-                    <div class="testimonial-content">
-                        <p>"Grâce aux cours, j'ai progressé rapidement et remporté mon premier tournoi ! 
-                        Les profs sont super et on apprend en s'amusant."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👦</div>
-                        <div class="author-info">
-                            <h4>Sohan, 11 ans</h4>
-                            <span>Champion de Savoie U12</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card" data-aos="flip-left" data-aos-delay="200">
-                    <div class="testimonial-content">
-                        <p>"L'atelier échecs à l'école Saint-Joseph est un vrai succès. Les enfants 
-                        adorent et progressent à vue d'œil. Une belle initiative !"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">👩</div>
-                        <div class="author-info">
-                            <h4>Directrice d'école</h4>
-                            <span>École Saint-Joseph</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="method-step" data-aos="fade-left" data-aos-delay="100">
+          <div class="step-number">2</div><div class="step-content"><h3>Apprentissage progressif</h3><p>Cours structurés alternant théorie, pratique et exercices.</p></div>
         </div>
-    </section>
-
-    <!-- Interventions scolaires -->
-    <section class="section school-interventions">
-        <div class="container">
-            <h2 class="section-title" data-aos="fade-up">Échecs à l'école</h2>
-            
-            <div class="interventions-grid">
-                <div class="intervention-info" data-aos="fade-right">
-                    <h3>Nos interventions en milieu scolaire</h3>
-                    <p>
-                        Depuis 2014, nous intervenons dans les écoles primaires d'Aix-les-Bains 
-                        pour initier les élèves aux échecs pendant le temps scolaire ou périscolaire.
-                    </p>
-                    
-                    <div class="schools-list">
-                        <h4>Écoles partenaires :</h4>
-                        <ul>
-                            <li><i class="fas fa-school"></i> École Saint-Joseph</li>
-                            <li><i class="fas fa-school"></i> École du Centre</li>
-                            <li><i class="fas fa-school"></i> École Franklin Roosevelt</li>
-                            <li><i class="fas fa-school"></i> École Liberté</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="benefits">
-                        <h4>Bénéfices pédagogiques :</h4>
-                        <div class="benefit-item">
-                            <i class="fas fa-brain"></i>
-                            <span>Développement de la concentration</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>Stimulation du raisonnement logique</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-users"></i>
-                            <span>Apprentissage du respect des règles</span>
-                        </div>
-                        <div class="benefit-item">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Amélioration des résultats scolaires</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="intervention-visual" data-aos="fade-left">
-                    <div class="stats-showcase">
-                        <div class="stat-circle">
-                            <span class="stat-number">4</span>
-                            <span class="stat-label">Écoles partenaires</span>
-                        </div>
-                        <div class="stat-circle">
-                            <span class="stat-number">200+</span>
-                            <span class="stat-label">Élèves formés/an</span>
-                        </div>
-                        <div class="stat-circle">
-                            <span class="stat-number">10</span>
-                            <span class="stat-label">Ans d'expérience</span>
-                        </div>
-                    </div>
-                    
-                    <blockquote class="school-quote">
-                        <p>"Les échecs ont transformé l'ambiance de classe. Les élèves sont plus concentrés 
-                        et développent des stratégies de réflexion qu'ils appliquent dans d'autres matières."</p>
-                        <cite>- Enseignant CE2, École Saint-Joseph</cite>
-                    </blockquote>
-                </div>
-            </div>
+        <div class="method-step" data-aos="fade-right" data-aos-delay="200">
+          <div class="step-number">3</div><div class="step-content"><h3>Mise en pratique</h3><p>Tournois internes, parties commentées et analyse collective.</p></div>
         </div>
-    </section>
-
-    <!-- CTA Inscription -->
-    <section class="cta-section gradient-bg">
-        <div class="container">
-            <div class="cta-content" data-aos="zoom-in">
-                <h2>Prêt à commencer l'aventure ?</h2>
-                <p>Inscriptions ouvertes toute l'année • Cours d'essai gratuit</p>
-                <div class="cta-features">
-                    <span class="cta-feature">✅ Pass'Sport accepté (-50€)</span>
-                    <span class="cta-feature">✅ Pass Région accepté (-30€)</span>
-                    <span class="cta-feature">✅ Tarifs famille</span>
-                </div>
-                <div class="cta-buttons">
-                    <a href="contact.html" class="btn btn-primary">
-                        <i class="fas fa-user-plus"></i> S'inscrire maintenant
-                    </a>
-                    <a href="horaires.html" class="btn btn-secondary">
-                        <i class="fas fa-calendar-check"></i> Voir les horaires
-                    </a>
-                </div>
-            </div>
+        <div class="method-step" data-aos="fade-left" data-aos-delay="300">
+          <div class="step-number">4</div><div class="step-content"><h3>Suivi personnalisé</h3><p>Bilan régulier et ajustement du programme selon la progression.</p></div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Académie d'Échecs</h4>
-                    <p>Club FFE n°2624<br>
-                    15 avenue d'Annecy<br>
-                    73100 Aix-les-Bains</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Liens rapides</h4>
-                    <ul>
-                        <li><a href="club.html">Le Club</a></li>
-                        <li><a href="horaires.html">Horaires</a></li>
-                        <li><a href="evenements.html">Événements</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Liens externes</h4>
-                    <ul>
-                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
-                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
-                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Suivez-nous</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
-            </div>
+  <!-- Interventions -->
+  <section class="section school-interventions">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-up">Échecs à l'école</h2>
+      <div class="interventions-grid">
+        <div class="intervention-info" data-aos="fade-right">
+          <h3>Nos interventions en milieu scolaire</h3>
+          <p>Depuis 2014, nous intervenons dans les écoles primaires d'Aix-les-Bains pour initier les élèves aux échecs.</p>
+
+          <div class="schools-list">
+            <h4>Écoles partenaires :</h4>
+            <ul id="schoolsList"></ul>
+          </div>
+
+          <div class="benefits">
+            <h4>Bénéfices pédagogiques :</h4>
+            <ul id="benefitsList"></ul>
+          </div>
         </div>
-    </footer>
 
-    <!-- Back to top -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
+        <div class="intervention-visual" data-aos="fade-left">
+          <div class="stats-showcase" id="statsCircles"></div>
+          <blockquote class="school-quote">
+            <p>"Les échecs transforment l'ambiance de classe : concentration, respect et esprit d'analyse."</p>
+            <cite>- Enseignant CE2, École Saint-Joseph</cite>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="../js/app.js"></script>
-    <script src="../js/navigation.js"></script>
-    <script src="../js/animations.js"></script>
+  <!-- CTA -->
+  <section class="cta-section gradient-bg">
+    <div class="container">
+      <div class="cta-content" data-aos="zoom-in">
+        <h2>Prêt à commencer l'aventure ?</h2>
+        <p>Inscriptions ouvertes toute l'année • Cours d'essai gratuit</p>
+        <div class="cta-features" id="ctaBadges"></div>
+        <div class="cta-buttons">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-user-plus"></i> S'inscrire maintenant</a>
+          <a href="horaires.html" class="btn btn-secondary"><i class="fas fa-calendar-check"></i> Voir les horaires</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Académie d'Échecs</h4>
+          <p>Club FFE n°2624<br/>15 avenue d'Annecy<br/>73100 Aix-les-Bains</p>
+        </div>
+        <div class="footer-section">
+          <h4>Liens rapides</h4>
+          <ul>
+            <li><a href="club.html">Le Club</a></li>
+            <li><a href="horaires.html">Horaires</a></li>
+            <li><a href="evenements.html">Événements</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Liens externes</h4>
+          <ul>
+            <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
+            <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
+            <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Suivez-nous</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/navigation.js"></script>
+  <script src="../js/dataEcole.js"></script>
+  <script src="../js/ecole.js"></script>
 </body>
 </html>

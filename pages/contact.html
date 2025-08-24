@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-        content="Contactez l'Académie d'Échecs d'Aix-les-Bains - Inscription, renseignements">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Contactez l'Académie d'Échecs d'Aix-les-Bains - Inscription, renseignements"/>
   <title>Contact - Académie d'Échecs d'Aix-les-Bains</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-    />
-    <script
-      defer
-      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-    </script>
-  <!-- CSS -->
-  <link rel="stylesheet" href="../css/main.css">
-  <link rel="stylesheet" href="../css/animations.css">
-  <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="stylesheet" href="../css/contact.css">
 
-  <!-- Libs -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- CSS globaux -->
+  <link rel="stylesheet" href="../css/main.css"/>
+  <link rel="stylesheet" href="../css/animations.css"/>
+  <link rel="stylesheet" href="../css/responsive.css"/>
+  <link rel="stylesheet" href="../css/contact.css"/>
+
+  <!-- Libs UI -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-<body>
+<body data-no-hero>
   <!-- Loader -->
   <div class="loader" id="loader">
     <div class="chess-loader">
@@ -38,16 +33,15 @@
   <div class="progress-bar" id="progressBar"></div>
 
   <!-- Header -->
-  <header class="header" id="header">
-    <nav class="nav container">
-      <a href="../index.html" class="nav-logo">
-        <span class="logo-icon">♔</span>
-        <span class="logo-text">Académie d'Échecs<br><small>Aix-les-Bains</small></span>
+  <header class="header site-header" id="header">
+    <nav class="nav container" aria-label="Navigation principale">
+      <a href="../index.html" class="nav-logo" aria-label="Accueil">
+        <img src="../assets/img/wordmark_thufts.png" alt="Académie d’Échecs Aix-les-Bains" class="site-logo"/>
       </a>
 
       <div class="nav-menu" id="navMenu">
         <ul class="nav-list">
-          <li class="nav-item"><a href="../index.html"        class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
+          <li class="nav-item"><a href="../index.html" class="nav-link"><i class="fas fa-home"></i> Accueil</a></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link"><i class="fas fa-chess"></i> Le Club <i class="fas fa-chevron-down"></i></a>
             <ul class="dropdown-menu">
@@ -56,32 +50,46 @@
               <li><a href="club.html#equipe">Notre équipe</a></li>
             </ul>
           </li>
-          <li class="nav-item"><a href="horaires.html"  class="nav-link"><i class="fas fa-clock"></i> Horaires</a></li>
+          <li class="nav-item"><a href="horaires.html" class="nav-link"><i class="fas fa-clock"></i> Horaires</a></li>
           <li class="nav-item"><a href="evenements.html" class="nav-link"><i class="fas fa-calendar"></i> Événements</a></li>
-          <li class="nav-item"><a href="blog.html"       class="nav-link"><i class="fas fa-archive"></i> Archives</a></li>
-          <li class="nav-item"><a href="contact.html"    class="nav-link active"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li class="nav-item"><a href="blog.html" class="nav-link"><i class="fas fa-archive"></i> Articles</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link active"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
       </div>
 
-      <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+      <button class="nav-toggle" id="navToggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </header>
 
-  <!-- Hero -->
-  <section class="contact-hero">
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
+  <!-- Hero dynamique (reine 3D) -->
+  <section class="contact-hero" aria-label="Bannière Contact">
+    <div class="intro-visual" data-aos="fade-left">
+      <div class="queen3d" id="queen3d" aria-label="Reine cristal 3D">
+        <div class="queen3d-stack" id="queenStack" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="chess-pattern" aria-hidden="true"></div>
+    <div class="hero-content container">
       <h1 class="page-title" data-aos="fade-down">Contactez-nous</h1>
       <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
-        Une question&nbsp;? Envie de nous rejoindre&nbsp;? Nous sommes là pour vous !
+        Une question&nbsp;? Envie de nous rejoindre&nbsp;? Nous sommes là pour vous&nbsp;!
       </p>
+    </div>
+    <div class="hero-bottom-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,40 C480,120 960,120 1440,40 L1440,120 L0,120 Z" fill="#ffffff"></path>
+      </svg>
     </div>
   </section>
 
   <!-- Fil d’Ariane -->
-  <div class="breadcrumb container">
-    <a href="../index.html">Accueil</a> <span>/</span> <span>Contact</span>
-  </div>
+  <nav class="breadcrumb container" aria-label="Fil d’Ariane">
+    <a href="../index.html">Accueil</a>
+    <span>/</span>
+    <span>Contact</span>
+  </nav>
 
   <!-- Cartes de contact -->
   <section class="section contact-info-section">
@@ -92,8 +100,7 @@
             <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
             <h3>Adresse</h3>
             <p>15 avenue d'Annecy<br>73100 Aix-les-Bains</p>
-            <a href="https://www.google.com/maps/place/15+Avenue+d'Annecy,+73100+Aix-les-Bains" target="_blank"
-               class="contact-link">Voir sur Maps <i class="fas fa-arrow-right"></i></a>
+            <a href="https://www.google.com/maps/place/15+Avenue+d'Annecy,+73100+Aix-les-Bains" target="_blank" rel="noopener" class="contact-link">Voir sur Maps <i class="fas fa-arrow-right"></i></a>
           </div>
 
           <div class="contact-card" data-aos="zoom-in" data-aos-delay="100">
@@ -108,8 +115,7 @@
             <div class="contact-icon"><i class="fas fa-envelope"></i></div>
             <h3>Email</h3>
             <p>aixlesbains.echecs<br>@gmail.com</p>
-            <a href="mailto:aixlesbains.echecs@gmail.com?subject=Demande%20d'informations"
-               class="contact-link">Écrire <i class="fas fa-arrow-right"></i></a>
+            <a href="mailto:aixlesbains.echecs@gmail.com?subject=Demande%20d'informations" class="contact-link">Écrire <i class="fas fa-arrow-right"></i></a>
           </div>
 
           <div class="contact-card" data-aos="zoom-in" data-aos-delay="300">
@@ -123,43 +129,36 @@
     </div>
   </section>
 
-  <!-- Réseaux sociaux & documents -->
+  <!-- Réseaux sociaux & liens -->
   <section class="section social-section">
     <div class="container">
       <div class="social-wrapper" data-aos="fade-up">
         <h3>Réseaux et documents utiles</h3>
         <div class="social-buttons">
-          <a href="https://wa.me/33615402971" target="_blank" class="social-btn whatsapp">
-            <i class="fab fa-whatsapp"></i>
-          </a>
-          <a href="mailto:aixlesbains.echecs@gmail.com" class="social-btn email">
-            <i class="fas fa-envelope"></i>
-          </a>
+          <a href="https://wa.me/33615402971" target="_blank" rel="noopener" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:aixlesbains.echecs@gmail.com" class="social-btn email"><i class="fas fa-envelope"></i></a>
         </div>
-
         <ul class="quick-links">
-          <li><i class="fas fa-euro-sign"></i>  <a href="horaires.html#tarifs">Voir les tarifs</a></li>
+          <li><i class="fas fa-euro-sign"></i> <a href="horaires.html#tarifs">Voir les tarifs</a></li>
         </ul>
       </div>
     </div>
   </section>
 
   <!-- Carte -->
-  <section class="section map-section" id="map">
+  <section class="section map-section">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">Nous trouver</h2>
-
       <div id="mapOSM" class="map-container" style="height:450px;border-radius:20px;"></div>
 
-        <!-- infos accès -->
-        <div class="access-info">
-          <h3>Comment venir ?</h3>
-          <div class="transport-options">
-            <div class="transport-item"><i class="fas fa-car"></i><div><h4>Voiture</h4><p>Parking gratuit avenue d'Annecy</p></div></div>
-            <div class="transport-item"><i class="fas fa-bus"></i><div><h4>Bus</h4><p>Ligne 2 – Arrêt « Lepic » (2 min)</p></div></div>
-            <div class="transport-item"><i class="fas fa-train"></i><div><h4>Train</h4><p>Gare d’Aix-les-Bains (15 min à pied)</p></div></div>
-            <div class="transport-item"><i class="fas fa-bicycle"></i><div><h4>Vélo</h4><p>Piste cyclable • Parking vélos</p></div></div>
-          </div>
+      <!-- infos accès -->
+      <div class="access-info">
+        <h3>Comment venir&nbsp;?</h3>
+        <div class="transport-options">
+          <div class="transport-item"><i class="fas fa-car"></i><div><h4>Voiture</h4><p>Parking gratuit avenue d'Annecy</p></div></div>
+          <div class="transport-item"><i class="fas fa-bus"></i><div><h4>Bus</h4><p>Ligne 2 – Arrêt « Lepic » (2 min)</p></div></div>
+          <div class="transport-item"><i class="fas fa-train"></i><div><h4>Train</h4><p>Gare d’Aix-les-Bains (15 min à pied)</p></div></div>
+          <div class="transport-item"><i class="fas fa-bicycle"></i><div><h4>Vélo</h4><p>Piste cyclable • Parking vélos</p></div></div>
         </div>
       </div>
     </div>
@@ -169,10 +168,10 @@
   <section class="cta-section gradient-bg">
     <div class="container">
       <div class="cta-content" data-aos="zoom-in">
-        <h2>Prêt à faire le premier pas ?</h2>
-        <p>Venez découvrir le club lors d’un cours d’essai gratuit !</p>
+        <h2>Prêt à faire le premier pas&nbsp;?</h2>
+        <p>Venez découvrir le club lors d’un cours d’essai gratuit&nbsp;!</p>
         <div class="cta-buttons">
-          <a href="tel:+33615402971" class="btn btn-light"><i class="fas fa-phone"></i> Appeler</a>
+          <a href="tel:+33615402971" class="btn btn-outline"><i class="fas fa-phone"></i> Appeler</a>
           <a href="sms:+33615402971?body=Bonjour" class="btn btn-outline"><i class="fas fa-sms"></i> SMS rapide</a>
         </div>
       </div>
@@ -181,56 +180,60 @@
 
   <!-- Footer -->
   <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Académie d'Échecs</h4>
-                    <p>Club FFE n°2624<br>
-                    15 avenue d'Annecy<br>
-                    73100 Aix-les-Bains</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Liens rapides</h4>
-                    <ul>
-                        <li><a href="pages/club.html">Le Club</a></li>
-                        <li><a href="pages/horaires.html">Horaires</a></li>
-                        <li><a href="pages/evenements.html">Événements</a></li>
-                        <li><a href="pages/contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Liens externes</h4>
-                    <ul>
-                        <li><a href="https://www.ligue-ara-echecs.fr" target="_blank">Ligue ARA</a></li>
-                        <li><a href="http://echecs.asso.fr" target="_blank">FFE</a></li>
-                        <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank">Blog historique</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Suivez-nous</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p>
-            </div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Académie d'Échecs</h4>
+          <p>Club FFE n°2624<br/>15 avenue d'Annecy<br/>73100 Aix-les-Bains</p>
         </div>
-    </footer>
+        <div class="footer-section">
+          <h4>Liens rapides</h4>
+          <ul>
+            <li><a href="club.html">Le Club</a></li>
+            <li><a href="horaires.html">Horaires</a></li>
+            <li><a href="evenements.html">Événements</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Liens externes</h4>
+          <ul>
+            <li><a href="https://www.ligue-ara-echecs.fr" target="_blank" rel="noopener">Ligue ARA</a></li>
+            <li><a href="http://echecs.asso.fr" target="_blank" rel="noopener">FFE</a></li>
+            <li><a href="http://aixlesbains-echecs.blogspot.com" target="_blank" rel="noopener">Blog historique</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Suivez-nous</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:aixlesbains.echecs@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2025 Académie d'Échecs d'Aix-les-Bains. Tous droits réservés.</p></div>
+    </div>
+  </footer>
 
   <!-- Back to top -->
-  <button class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></button>
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></button>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Base site -->
   <script src="../js/app.js"></script>
   <script src="../js/navigation.js"></script>
   <script src="../js/animations.js"></script>
+
+  <!-- Page Contact -->
   <script src="../js/contact.js"></script>
+
+  <noscript>
+    <style>.contact-cards{opacity:1!important;transform:none!important}</style>
+  </noscript>
 </body>
 </html>
