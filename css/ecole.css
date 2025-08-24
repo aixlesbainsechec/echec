@@ -35,6 +35,8 @@
 .piece-11 { top: 27%; left: -100px; animation-delay: 8s; }
 .piece-12 { top: 90%; left: -100px; animation-delay: 2s; }
 
+.school-hero .intro-visual{ position:absolute; left:60%; padding-bottom:20px; z-index:1; }
+
 @keyframes float-diagonal {
   0% { transform: translate(0,0) rotate(0); }
   100% { transform: translate(calc(100vw + 200px), -100px) rotate(360deg); }

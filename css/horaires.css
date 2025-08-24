@@ -269,7 +269,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .weekly-schedule { overflow-x: scroll; padding: 1rem; }
-  .day-column { min-width: 120px; }
+  .day-column { min-width: 110px; }
 }
 @media (max-width: 768px) {
   .schedule-filters { justify-content: flex-start; overflow-x: auto; padding-bottom: 1rem; }

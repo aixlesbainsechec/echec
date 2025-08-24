@@ -8,7 +8,6 @@
 
 /* <= 768px */
 @media (max-width: 768px){
-  .nav-toggle{ display:block }
   .nav-menu{
     position:fixed; inset:62px 0 0 0; background:#0f1220; border-top:1px solid #22284b;
     transform: translateY(-10px); opacity:0; pointer-events:none; transition:.2s;
@@ -30,4 +29,46 @@
 @media (max-width: 480px){
   .hero-title{ font-size: clamp(26px, 7.5vw, 36px) }
   .stat{ font-size:.95rem }
+}
+
+/* === Mobile menu: lock scroll + backdrop === */
+:root{ --header-height: 70px; }                  /* unifie la hauteur */
+@media (max-width: 768px){
+  :root{ --header-height: 62px; }                /* si tu veux 62px en mobile */
+}
+
+@media (max-width: 991px){
+  /* Menu plein écran sous le header, scrollable à l'intérieur */
+  .nav-menu{
+    position: fixed;
+    inset: var(--header-height) 0 0 0;           /* démarre sous le header */
+    height: calc(100dvh - var(--header-height)); /* 100dvh = safe pour mobile */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Lock du scroll de la page quand le menu est ouvert */
+  body.nav-open{
+    position: fixed;
+    width: 100%;
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* Backdrop pour capter le clic en dehors du menu */
+  .nav-backdrop{
+    position: fixed;
+    inset: var(--header-height) 0 0 0;
+    background: rgba(0,0,0,.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s ease;
+    pointer-events: none;
+    z-index: calc(var(--z-header) - 1);
+  }
+  body.nav-open .nav-backdrop{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
 }

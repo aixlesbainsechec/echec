@@ -131,8 +131,6 @@ h1{font-size:3rem} h2{font-size:2.5rem} h3{font-size:2rem} h4{font-size:1.5rem} 
   100%{ background-position: 80px 80px, 200px 0;}
 }
 
-.intro-visual{ position:absolute; left:60%; padding-bottom:20px; z-index:1; }
-
 .hero-bottom-wave svg{
   width:100%; height:100%;
 }
@@ -277,3 +275,109 @@ h1{font-size:3rem} h2{font-size:2.5rem} h3{font-size:2rem} h4{font-size:1.5rem} 
   .dropdown:hover .dropdown-menu{display:none}
   .dropdown.active .dropdown-menu{position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; background:transparent}
 }
+
+
+/* === MOBILE POLISH PATCH (placer APRÈS tous les autres CSS) === */
+
+/* 1) Container full-width mobile-friendly */
+.container{
+  width: min(1280px, 94vw);
+  max-width: none;            /* annule le 80vw */
+  margin-inline: auto;
+  padding-inline: clamp(12px, 3vw, 24px);
+}
+
+/* 2) Espacements & titres plus compacts */
+@media (max-width: 768px){
+  .section{ padding: 2.5rem 0; }             /* au lieu de 5rem */
+  h1{ font-size: clamp(1.75rem, 7vw, 2.25rem); }
+  h2{ font-size: clamp(1.4rem, 5.6vw, 1.9rem); }
+  h3{ font-size: clamp(1.15rem, 4.8vw, 1.4rem); }
+  .btn{ padding: .8rem 1.1rem; }
+  .hero-subtitle{ font-size: 1rem; }
+}
+
+/* 3) Header/Hero cohérents sur mobile */
+@media (max-width: 991px){
+  .nav{ height: 62px; }
+  :root{ --header-height: 62px; }
+  .nav-menu{
+    inset: 62px 0 0 0;                   /* aligne avec la nouvelle hauteur */
+    background: var(--primary-dark);     /* thème cohérent */
+  }
+}
+
+/* 4) Grilles: 1 colonne sur petit écran, jamais de débordement */
+@media (max-width: 560px){
+  /* Grilles génériques du site */
+  .info-grid,
+  .team-grid,
+  .trophy-showcase,
+  .pricing-grid,
+  .levels-grid,
+  .competitions-cards,
+  .events-grid,
+  #postGrid{              /* grille du blog */
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem;
+  }
+  /* Vignettes un peu moins hautes */
+  .post-thumb,
+  .post-card img{ height: 160px !important; }
+}
+
+/* 5) Empêche tout débordement horizontal intempestif */
+img, video, iframe, .map-container, .weekly-schedule{ max-width:100%; }
+body{ overflow-x:hidden; }
+
+/* 6) Décors 3D / pièces qui chevauchent : on réduit/éloigne sur mobile */
+@media (max-width: 768px){
+  .intro-visual{ right: 0; left: auto; transform: scale(.85); opacity:.85; }
+}
+@media (max-width: 520px){
+  .intro-visual{ display:none; }          /* on coupe sous ~520px pour garder le focus contenu */
+}
+
+/* 7) Héros plus courts sur mobile (tous les types) */
+@media (max-width: 560px){
+  .hero,
+  .page-hero,
+  .events-hero,
+  .school-hero,
+  .contact-hero,
+  .blog-hero{
+    min-height: 340px !important;
+  }
+}
+
+/* 8) Breadcrumbs & CTA plus légers */
+@media (max-width: 560px){
+  .breadcrumb{ font-size:.9rem; }
+  .cta-buttons{ gap:.65rem; }
+}
+
+/* 9) Blog layout: pas de sidebar à gauche sur mobile */
+@media (max-width: 992px){
+  .blog-layout{ grid-template-columns: 1fr; }
+}
+
+/* 10) Petites retouches d’accessibilité mobile */
+.nav-link{ padding: .5rem 0; }
+.post-card{ -webkit-tap-highlight-color: transparent; }
+
+/* --- FOOTER WIDTH BUGFIX --- */
+.footer-content{
+  /* Option: un peu plus flexible pour petits écrans */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+@media (max-width: 991px){
+  .footer-section{ grid-column: auto !important; }
+}
+@media (max-width: 768px){
+  .footer-section{ grid-column: auto !important; }
+}
+
+/* Sécurité anti-débordement de texte/liens longs */
+.footer-section, .footer-section *{ min-width: 0; }
+.footer-section a, .footer-section p{ word-break: break-word; overflow-wrap: anywhere; }

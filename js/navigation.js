@@ -1,67 +1,56 @@
-// ========================================
-// Navigation – AEA
-// ========================================
-
-document.addEventListener('DOMContentLoaded', () => {
+// navigation.js
+(function(){
   const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
-  const dropdowns = document.querySelectorAll('.dropdown');
-  const header = document.getElementById('header');
+  const navMenu   = document.getElementById('navMenu');
+  const header    = document.getElementById('header');
+  let lastScrollY = 0;
 
-  // Burger
-  navToggle.addEventListener('click', () => {
-    const open = navMenu.classList.toggle('active');
-    navToggle.classList.toggle('active', open);
-    document.body.classList.toggle('menu-open', open);
-    navToggle.setAttribute('aria-expanded', String(open));
+  // Backdrop injecté si absent
+  let backdrop = document.getElementById('navBackdrop');
+  if(!backdrop){
+    backdrop = document.createElement('div');
+    backdrop.id = 'navBackdrop';
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
+  function openMenu(){
+    navMenu.classList.add('active');
+    navToggle.setAttribute('aria-expanded','true');
+
+    lastScrollY = window.scrollY || 0;
+    // Technique "position:fixed" qui garde la position du scroll
+    document.body.style.top = `-${lastScrollY}px`;
+    document.body.classList.add('nav-open');
+  }
+
+  function closeMenu(){
+    navMenu.classList.remove('active');
+    navToggle.setAttribute('aria-expanded','false');
+
+    document.body.classList.remove('nav-open');
+    document.body.style.top = '';
+    window.scrollTo(0, lastScrollY || 0);
+  }
+
+  navToggle?.addEventListener('click', () => {
+    const isOpen = navMenu.classList.contains('active');
+    isOpen ? closeMenu() : openMenu();
   });
 
-  // Dropdown mobile
-  dropdowns.forEach(d=>{
-    const link = d.querySelector('.nav-link');
-    link.addEventListener('click', (e)=>{
-      if (window.innerWidth <= 768){
-        e.preventDefault();
-        d.classList.toggle('active');
-        // ferme autres
-        dropdowns.forEach(x=>{ if (x!==d) x.classList.remove('active'); });
-      }
-    });
+  // Clic sur backdrop => fermeture
+  backdrop.addEventListener('click', closeMenu);
+
+  // Ferme au clic d’un lien du menu
+  navMenu.addEventListener('click', (e)=>{
+    const a = e.target.closest('a');
+    if(a) closeMenu();
   });
 
-  // Fermeture au clic hors menu
-  document.addEventListener('click', (e)=>{
-    if (!navMenu.contains(e.target) && !navToggle.contains(e.target)){
-      navMenu.classList.remove('active');
-      navToggle.classList.remove('active');
-      document.body.classList.remove('menu-open');
-      navToggle.setAttribute('aria-expanded','false');
+  // Évite le "pull to refresh" / rubber band pendant le lock
+  document.addEventListener('touchmove', (e)=>{
+    if(document.body.classList.contains('nav-open') && !e.target.closest('#navMenu')){
+      e.preventDefault();
     }
-  });
-
-  // Header up/down on scroll (complète app.js)
-  let last = 0;
-  window.addEventListener('scroll', () => {
-    const y = window.pageYOffset;
-    if (y <= 0){
-      header.classList.remove('scroll-up','scroll-down');
-      last = 0; return;
-    }
-    if (y > last){
-      header.classList.remove('scroll-up');
-      header.classList.add('scroll-down');
-    }else{
-      header.classList.remove('scroll-down');
-      header.classList.add('scroll-up');
-    }
-    last = y;
-  }, {passive:true});
-
-  // Active link
-  const current = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link').forEach(a=>{
-    const href = a.getAttribute('href');
-    if (!href || href === '#') return;
-    if (current === href.split('/').pop()) a.classList.add('active');
-  });
-});
+  }, {passive:false});
+})();

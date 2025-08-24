@@ -215,6 +215,8 @@
 .values-grid {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 40px;
 
   .value-card {
     display: flex;
@@ -222,6 +224,8 @@
     align-items: center;
     border-radius: 20px;
     background-color: var(--primary);
+    width: 380px;
+    text-align: center;
     padding: 60px;
     padding-top: 20px;
     box-shadow:var(--shadow-md);
